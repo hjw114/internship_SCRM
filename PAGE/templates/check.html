@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>结算</title>
+    <meta charset="UTF-8">
+<style>
+body {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+    /* 标题 */
+.header {
+    padding: 30px;
+    text-align: center;
+    background: #99CCFF;
+    color: white;
+}
+
+/* 标题字体加大 */
+.header h1 {
+    font-size: 40px;
+}
+
+/* 导航，内容溢出元素框时隐藏 */
+.navbar {
+    overflow: hidden;
+    background-color: #6699CC;
+}
+
+/* 导航栏样式 */
+.navbar a {
+    float: left;
+    display: block; /* 块状元素 */
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none; /* 文本装饰线 */
+}
+
+/* 右侧链接*/
+.navbar a.right {
+    float: right;
+}
+
+    /* 鼠标移动到链接的颜色 */
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+/* 表格第一行 */
+.td1 {
+    border-width: 2px;
+    border-style: solid;
+    border-color: white;
+    color: white;
+    background-color:rgb(81, 130, 187);
+}
+/* 表格其他行 */
+.td2{
+    border-width: 2px;
+    border-style: solid;
+    border-color: white;
+    color: #000;
+    background-color: rgb(202, 227, 253);
+}
+
+.button{
+    background-color: #6699CC; /* Green */
+    padding: 10px 25px;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.button:hover {
+    background-color: #8ab6e2;
+    color:white;
+}
+
+    /* 底部 */
+.footer {
+    height:80px;
+    padding: 5px;
+    text-align: center;
+    color:white;
+    background: #99CCFF;
+}
+</style>
+</head>
+
+<body>
+<div class="header">
+  <h1>极速生活 无限可能</h1>
+  <p>无限速团队制作</p>
+</div>
+
+<div class="navbar">
+  <a href="http://127.0.0.1:5000/homepage_people">返回首页</a>
+  <a href="http://127.0.0.1:5000/Shopping_Cart" class="right">购物车</a>
+  <a href="http://127.0.0.1:5000/Personal_homepage" class="right">个人中心</a>
+</div>
+<h2><center>-确认订单信息-</center></h2>
+<table  style="color:black;font-size:20px;border-collapse:collapse;"
+		cellspacing="15"  align="center" border="1" width="500" cellpadding="0">
+<tr align="center" >
+  <td class="td1">商品信息</td>
+  <td class="td1">单价</td>
+  <td class="td1">数量</td>
+  <td class="td1">小计</td>
+  <td class="td1">留言</td>
+</tr>
+
+<tr align="center">
+  <td class="td2">
+      <br><a href="tianbing.html"><img src="../static/pumpkinpie.jpg" width="100" height="100" /></a>
+      <div style="font-size: 17px">南瓜饼</div>
+  </td>
+  <td class="td2">3</td>
+  <td class="td2">2</td>
+  <td class="td2">6</td>
+  <td class="td2"><input type="text"></td>
+</tr>
+</table>
+
+<div align="center">
+<h3>-确认收货人信息-</h3>
+<table  style="color:black;font-size:20px;border-collapse:collapse;"
+		cellspacing="20"  align="center" border="1" width="400" height="200" cellpadding="0">
+    <tr align="center" >
+        <td class="td1">收货地址</td>
+        <td class="td2"><input type="text"></td>
+    </tr>
+    <tr align="center" >
+        <td class="td1">收货人</td>
+        <td class="td2"><input type="text"></td>
+    </tr>
+    <tr align="center" >
+        <td class="td1">收货人联系方式</td>
+        <td class="td2"><input type="text"></td>
+    </tr>
+    <tr align="center" >
+        <td class="td1">实付款:</td>
+        <td class="td2">6 RMB</td>
+    </tr>
+ </table>
+<h4><a href="http://127.0.0.1:5000/payment" class="button">确认付款</a></h4>
+</div>
+</div>
+    <div class="footer">
+    <h2>广告位招租</h2>
+    </div>
+</body>
+
+
+
+

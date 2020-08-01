@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<script>
+    function sell() {
+        alert("请先登录")
+    }
+</script>
+
+<head>
+<title>游客主页</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+    box-sizing: border-box;
+}
+
+/* body 样式,字体列表 */
+body {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    margin: 0;
+}
+
+/* 标题 */
+.header {
+    padding: 30px;
+    text-align: center;
+    background: #99CCFF;
+    color: white;
+}
+
+/* 标题字体加大 */
+.header h1 {
+    font-size: 40px;
+}
+
+/* 导航，内容溢出元素框时隐藏 */
+.navbar {
+    overflow: hidden;
+    background-color: #6699CC;
+}
+
+/* 导航栏样式 */
+.navbar a {
+    float: left;
+    display: block; /* 块状元素 */
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none; /* 文本装饰线 */
+}
+
+/* 右侧链接*/
+.navbar a.right {
+    float: right;
+}
+
+/* 鼠标移动到链接的颜色 */
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+.main {
+    background-color: white;
+    padding: 20px;
+}
+/* 列容器 */
+.row {
+    display: -ms-flexbox; /* IE10 弹性布局*/
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+}
+
+.fakeimg2 {
+    background-color: #aaa;
+    width: 192px;
+    height:210px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    float: left;
+    display:inline;
+    margin:5px;
+}
+.jia a{
+    vertical-align: middle;
+}
+.jia a:hover img {
+    filter:alpha(Opacity=80);
+    -moz-opacity:0.8;
+    opacity: 0.8;
+}
+
+/* 底部 */
+.footer {
+    height:80px;
+    padding: 5px;
+    text-align: center;
+    color:white;
+    background: #99CCFF;
+}
+
+
+/* 响应式布局 - 在屏幕设备宽度尺寸小于 700px 时, 让两栏上下堆叠显示 */
+@media screen and (max-width: 700px) {
+    .row {
+        flex-direction: column;
+    }
+}
+
+/* 响应式布局 - 在屏幕设备宽度尺寸小于 400px 时, 让导航栏目上下堆叠显示 */
+@media screen and (max-width: 400px) {
+    .navbar a {
+        float: none;
+        width: 100%;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>极速生活 无限可能</h1>
+  <p>无限速团队制作</p>
+</div>
+
+<div class="navbar">
+  <a href="#">服装</a>
+  <a href="#">食品</a>
+  <a href="#">家具</a>
+  <a href="http://127.0.0.1:5000/register" class="right">登录/注册</a>
+</div>
+
+<div class="row">
+    <div class="main">
+      <h2 style="color: #f65f5f">-正在热卖-</h2>
+		<div class="fakeimg2"  >
+            <div align="center"><img src="../static/cloth1.PNG" width=160px height=150px ></div>
+            <center>多色裤子
+                <div class="jia">销售价：￥98
+                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
+            </center>
+        </div>
+	    <div class="fakeimg2" >
+            <div align="center"><img src="../static/cloth2.PNG" width=160px height=150px ></div>
+            <center>羽绒服
+                <div class="jia">销售价：￥798
+                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
+            </center>
+        </div>
+
+		<div class="fakeimg2" >
+            <div align="center"><img src="../static/cloth3.PNG" width=160px height=150px ></div>
+            <center>个性绿短裤
+                <div class="jia">销售价：￥78
+                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
+            </center>
+        </div>
+
+		<div class="fakeimg2" >
+            <div align="center"><img src="../static/cloth4.PNG" width=160px height=150px ></div>
+            <center>猫猫头T恤
+                <div class="jia">销售价：￥48
+                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
+            </center>
+        </div>
+
+        <div class="fakeimg2" >
+            <div align="center"><img src="../static/home1.PNG" width=160px height=150px ></div>
+            <center>豪华沙发
+                <div class="jia">销售价：￥1998
+                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
+            </center>
+        </div>
+
+        <div class="fakeimg2" >
+            <div align="center"><img src="../static/home2.PNG" width=160px height=150px ></div>
+            <center>简约沙发
+                <div class="jia">销售价：￥998
+                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
+            </center>
+        </div>
+
+
+      <br>
+      <br>
+      <br>
+      <h2 style="color: #f14b4b">-当季爆款-</h2>
+
+      	<div class="fakeimg2" >
+            <div align="center"><img src="../static/food1.PNG" width=160px height=150px ></div>
+            <center>芒果干
+                <div class="jia">销售价：￥58
+                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
+            </center>
+        </div>
+
+	    <div class="fakeimg2">
+            <div align="center"><img src="../static/food2.PNG" width=160px height=150px ></div>
+            <center>无糖饼干
+                <div class="jia">销售价：￥9.8
+                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
+            </center>
+        </div>
+
+		<div class="fakeimg2" >
+            <div align="center"><img src="../static/food3.PNG" width=160px height=150px ></div>
+            <center>高钙鱼松小虾虾
+                <div class="jia">销售价：￥40.8
+                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
+            </center>
+        </div>
+
+		<div class="fakeimg2" >
+            <div align="center"><img src="../static/food4.PNG" width=160px height=150px ></div>
+            <center>曲奇饼
+                <div class="jia">销售价：￥98
+                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
+            </center>
+        </div>
+
+        <div class="fakeimg2" >
+            <div align="center"><img src="../static/home3.PNG" width=160px height=150px ></div>
+            <center>普通沙发
+                <div class="jia">销售价：￥1598
+                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
+            </center>
+        </div>
+
+        <div class="fakeimg2" >
+            <div align="center"><img src="../static/home4.PNG" width=160px height=150px ></div>
+            <center>至尊沙发
+                <div class="jia">销售价：￥19998
+                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
+            </center>
+        </div>
+    </div>
+  </div>
+
+</div>
+    <div class="footer">
+    <h2>广告位招租</h2>
+    </div>
+
+</body>
+</html>

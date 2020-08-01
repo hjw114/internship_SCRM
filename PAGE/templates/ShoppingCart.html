@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>购物车</title>
+    <meta charset="UTF-8">
+<style>
+* {
+    box-sizing: border-box;
+}
+
+/* body 样式,字体列表 */
+body {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    margin: 0;
+}
+
+.wrapper{
+    width: 1270px;
+    display: flex;
+    min-height: 100vh; /*1vh表示浏览器高度的1%，100vh为浏览器高度，感觉这个挺好的*/
+    flex-direction: column;/*灵活的项垂直显示*/
+}
+
+/* 标题 */
+.header {
+    padding: 30px;
+    text-align: center;
+    background: #99CCFF;
+    color: white;
+}
+
+/* 标题字体加大 */
+.header h1 {
+    font-size: 40px;
+}
+
+/* 导航，内容溢出元素框时隐藏 */
+.navbar {
+    overflow: hidden;
+    background-color: #6699CC;
+}
+
+/* 导航栏样式 */
+.navbar a {
+    float: left;
+    display: block; /* 块状元素 */
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none; /* 文本装饰线 */
+}
+
+/* 右侧链接*/
+.navbar a.right {
+    float: right;
+}
+
+.content{
+    flex: 1;
+}
+
+.jia a{
+    vertical-align: middle;
+}
+.jia a:hover img {
+    filter:alpha(Opacity=80);
+    -moz-opacity:0.8;
+    opacity: 0.8;
+}
+
+.button{
+    background-color: #6699CC; /* Green */
+    padding: 10px 25px;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.button:hover {
+    background-color: #8ab6e2;
+    color:white;
+}
+
+/* 鼠标移动到链接的颜色 */
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.bottom {
+    background-color: #f1f1f1;
+    padding: 20px;
+}
+
+/* 底部 */
+.footer {
+    height:80px;
+    padding: 5px;
+    text-align: center;
+    color:white;
+    background: #99CCFF;
+}
+
+
+/* 响应式布局 - 在屏幕设备宽度尺寸小于 700px 时, 让两栏上下堆叠显示 */
+@media screen and (max-width: 700px) {
+    .row {
+        flex-direction: column;
+    }
+}
+
+/* 响应式布局 - 在屏幕设备宽度尺寸小于 400px 时, 让导航栏目上下堆叠显示 */
+@media screen and (max-width: 400px) {
+    .navbar a {
+        float: none;
+        width: 100%;
+    }
+}
+/* 表格第一行 */
+.td1 {
+    border-width: 2px;
+    border-style: solid;
+    border-color: white;
+    color: white;
+    background-color:rgb(81, 130, 187);
+}
+/* 表格其他行 */
+.td2{
+    border-width: 2px;
+    border-style: solid;
+    border-color: white;
+    color: #000;
+    background-color: rgb(202, 227, 253);
+}
+
+.fakeimg2 {
+    background-color: #aaa;
+    width: 192px;
+    height:210px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    float: left;
+    display:inline;
+    margin:5px;
+}
+</style>
+
+</head>
+
+<body>
+<div class="wrapper">
+<div class="header">
+  <h1>极速生活 无限可能</h1>
+  <p>无限速团队制作</p>
+</div>
+
+
+
+<div class="navbar">
+  <a href="http://127.0.0.1:5000/homepage_people">返回首页</a>
+  <a href="http://127.0.0.1:5000/Personal_homepage" class="right">个人中心</a>
+</div>
+<div class="content">
+<h1 align="center">购物车</h1>
+<h2 style="font-size:20px" align="center">亲亲，快把我带走吧~</h2>
+
+<table  cellspacing="15"  style="color:black;font-size:20px;border-collapse:collapse;" align="center" border="1"
+width="1000px" height="200px">
+<tr align="center">
+  <td class="td1">选择</td>
+  <td class="td1">商品信息</td>
+  <td class="td1">单价</td>
+  <td class="td1">购买数量</td>
+  <td class="td1">金额</td>
+  <td class="td1">操作</td></tr>
+</tr>
+
+<tr align="center">
+  <td class="td2"><form><input type = "checkbox" style="zoom:200%;"></form></td>
+  <td class="td2">
+      <a href="http://127.0.0.1:5000/shoppinglist"><img src="../static/pumpkinpie.jpg" width="100" height="100" /></a>
+        <center>南瓜饼</center></td>
+  <td class="td2">3</td>
+  <td class="td2"><form><input type="number" name="quantity" min="1" max="5" style="zoom:200%;"></form></td>
+  <td class="td2">6</td>
+  <td class="td2"><a href="#" style="font-size:20px">删除</a></td>
+</tr>
+</table>
+<h4 align="center"><a href="http://127.0.0.1:5000/check" class="button">结算</a></h4>
+</div>
+
+<div class="bottom">
+	<h2 style="color: #f68686">-根据您的购买历史，我们猜您可能会喜欢以下商品-</h2>
+<div class="fakeimg2"  >
+            <div align="center"><img src="../static/naifen.jpg" width=160px height=150px ></div>
+            <center>奶粉
+                <div class="jia">销售价：￥58
+                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
+            </center>
+        </div>
+
+        <div class="fakeimg2" >
+            <div align="center"><img src="../static/home2.PNG" width=160px height=150px ></div>
+            <center>简约沙发
+                <div class="jia">销售价：￥998
+                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
+            </center>
+        </div>
+
+        <div class="fakeimg2" >
+            <div align="center"><img src="../static/home3.PNG" width=160px height=150px ></div>
+            <center>普通沙发
+                <div class="jia">销售价：￥1598
+                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
+            </center>
+        </div>
+</div>
+</div>
+</div>
+<div class="footer">
+    <h2>广告位招租</h2>
+    </div>
+
+</body>
+</html>
