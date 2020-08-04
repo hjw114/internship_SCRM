@@ -17,7 +17,6 @@ def write_sql(sql_data):
     db = pymysql.connect(host='wxs.chinaeast.cloudapp.chinacloudapi.cn', user='root', password='Wxs20200730', port=3306,
                          db='demo')  # 数据库
     cursor = db.cursor()  # 游标
-    cursor.execute('use woniu13')
     for i in sql_data:
         for j in i:
             cursor.execute("insert into behavior_analysis_aprior values(%s','%s','%f')" % (i[0], i[1], i[2]))
