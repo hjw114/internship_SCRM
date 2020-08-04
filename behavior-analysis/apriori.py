@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 from numpy import *
 import reader
 
@@ -114,8 +112,8 @@ def calcConf(freqSet, H, supportData, ruleList, minConf=0.7):
         lift = supportData[freqSet] / (supportData[conseq] * supportData[freqSet - conseq])
 
         if conf >= minConf and lift > 1:
-            print(freqSet - conseq, '-->', conseq, '支持度', round(supportData[freqSet - conseq], 2), '置信度：', conf,
-                  'lift值为：', round(lift, 2))
+            #print(freqSet - conseq, '-->', conseq, '支持度', round(supportData[freqSet - conseq], 2), '置信度：', conf,
+            #      'lift值为：', round(lift, 2))
             ruleList.append((set(freqSet - conseq), set(conseq), conf))
 
 # 生成规则
@@ -131,7 +129,8 @@ def gen_rule(L, supportData, minConf=0.7):
     return bigRuleList
 
 if __name__ == '__main__':
-    dataSet = reader.data_reader()
+    idlist,goodslist = reader.search()
+    dataSet = reader.data_handle(idlist,goodslist)
     L, supportData = apriori(dataSet, minSupport=0.2)
     rule = gen_rule(L, supportData, minConf=0.7)
     print(rule)
