@@ -22,34 +22,44 @@ def search():
     allid = cursor.fetchall()  # 取出数据
     for s in allid:
         idlist.append(s[0])
-    sql1 = "SELECT goods_id FROM user_behavior "
-    cursor.execute(sql1)
+    sql2 = "SELECT goods_id FROM user_behavior "
+    cursor.execute(sql2)
     goodslist = []
     allgoods = cursor.fetchall()  # 取出数据
     for s in allgoods:
         goodslist.append(s[0])
+    sql3 = "SELECT actions FROM user_behavior "
+    cursor.execute(sql3)
+    actionlist = []
+    allaction = cursor.fetchall()  # 取出数据
+    for s in allaction:
+        actionlist.append(s[0])
     db.commit()
     db.close()
     cursor.close()  # 关闭
-    return idlist,goodslist
+    return idlist,goodslist,actionlist
 
 def data_handle(idlist,goodslist):
+    i = 0
+    j = 0
     list_data = []
-    for n in idlist:
+    for s in goodslist:
+        goodslist[j] = int(s/100)
+        j = j + 1
+    for n in range(len(idlist)):
         if n != 0:
             if idlist[n] == idlist[n - 1]:
-                list_data[i][j] = goodslist[n]
-                j = j + 1
+                list_data[i].append(goodslist[n])
             else:
+                list_data.append([])
                 i = i + 1
-                j = 0
-        list_data[0][0] = goodslist[0]
+                list_data[i].append(goodslist[n])
+        else:
+            list_data.append([])
+            list_data[0].append(goodslist[0])
     return list_data
 
 if __name__ == '__main__':
-    print(data_reader())
+    #print(data_reader())
     idlist,goodslist=search()
     print(data_handle(idlist,goodslist))
-
-
-

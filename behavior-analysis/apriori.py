@@ -11,8 +11,7 @@ def createC1(dataSet):
     # 映射为frozenset唯一性的，可使用其构造字典
     return list(map(frozenset, C1))
 
-# 从候选K项集到频繁K项集（支持度计算）
-def scanD(D, Ck, minSupport):
+def scanD(D, Ck, minSupport):# 从候选K项集到频繁K项集（支持度计算）
     ssCnt = {}
     for tid in D:
         for can in Ck:
@@ -94,8 +93,7 @@ def apriori(dataSet, minSupport=0.2):
     del L[-1]  # 删除最后一个空集
     return L, supportData  # L为频繁项集，为一个列表，1，2，3项集分别为一个元素。
 
-# 生成集合的所有子集
-def getSubset(fromList, toList):
+def getSubset(fromList, toList):# 生成集合的所有子集
     for i in range(len(fromList)):
         t = [fromList[i]]
         tt = frozenset(set(fromList) - set(t))
@@ -114,10 +112,9 @@ def calcConf(freqSet, H, supportData, ruleList, minConf=0.7):
         if conf >= minConf and lift > 1:
             #print(freqSet - conseq, '-->', conseq, '支持度', round(supportData[freqSet - conseq], 2), '置信度：', conf,
             #      'lift值为：', round(lift, 2))
-            ruleList.append((set(freqSet - conseq), set(conseq), conf))
+            ruleList.append([list(freqSet - conseq), list(conseq), conf])
 
-# 生成规则
-def gen_rule(L, supportData, minConf=0.7):
+def gen_rule(L, supportData, minConf=0.7):# 生成规则
     bigRuleList = []
     for i in range(1, len(L)):  # 从二项集开始计算
         for freqSet in L[i]:  # freqSet为所有的k项集
@@ -129,7 +126,7 @@ def gen_rule(L, supportData, minConf=0.7):
     return bigRuleList
 
 if __name__ == '__main__':
-    idlist,goodslist = reader.search()
+    idlist,goodslist,_ = reader.search()
     dataSet = reader.data_handle(idlist,goodslist)
     L, supportData = apriori(dataSet, minSupport=0.2)
     rule = gen_rule(L, supportData, minConf=0.7)
