@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import pymysql
+import datetime
 
 def data_reader():
     data = pd.read_csv('data.csv')
@@ -26,7 +27,7 @@ def search():
     timelist = []
     alltime = cursor.fetchall()  # 取出数据
     for s in alltime:
-        timelist.append(s[0][5:7])
+        timelist.append(s[0].strftime('%m'))
     db.commit()
     db.close()
     cursor.close()  # 关闭
