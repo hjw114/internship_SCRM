@@ -1,5 +1,6 @@
 import reader
 import apriori
+import pymysql
 
 def get(id,idlist,goodslist,actionlist):
     buy = []
@@ -7,7 +8,8 @@ def get(id,idlist,goodslist,actionlist):
         if idlist[s] == id:
             if actionlist[s] == 2:
                 buy.append(goodslist[s])
-    return buy
+    buy1 = list(set(buy))
+    return buy1
 
 def max(rule):
     max = 0
@@ -55,6 +57,16 @@ def buy(id,idlist,goodslist,actionlist):
             result[s] = 1
             res.append(s)
     return result
+
+def save_sql(result,id):
+    db = pymysql.connect(host='wxs.chinaeast.cloudapp.chinacloudapi.cn', user='root', password='Wxs20200730', port=3306,
+                         db='demo')  # 数据库
+    cursor = db.cursor()  # 游标
+    sql = "update user_id set want_to_buy = %s where id = %s"
+    cursor.execute(sql,[str(result),str(id)])
+    db.commit()
+    db.close()
+    cursor.close()  # 关闭
 
 if __name__ == '__main__':
     idlist, goodslist, actionlist = reader.search()
