@@ -85,7 +85,6 @@ def apriori(dataSet, minSupport=0.2):
     k = 2
     while (len(L[k - 2]) > 0):
         Ck = aprioriGen(L[k - 2], k)
-        print(Ck)
         Lk, supK = scanD(D, Ck, minSupport)  # scan DB to get Lk
         supportData.update(supK)
         L.append(Lk)  # L最后一个值为空集
@@ -126,12 +125,8 @@ def gen_rule(L, supportData, minConf=0.7):# 生成规则
     return bigRuleList
 
 if __name__ == '__main__':
-    #idlist,goodslist,_ = reader.search()
-    #dataSet = reader.data_handle(idlist,goodslist)
-    #L, supportData = apriori(dataSet, minSupport=0.2)
-    #rule = gen_rule(L, supportData, minConf=0.7)
-    #print(rule)
-    a=[1]
-    b,c=apriori(a,0.2)
-    print(b)
-    print(c)
+    idlist,goodslist,_ = reader.search()
+    dataSet = reader.data_handle(idlist,goodslist)
+    L, supportData = apriori(dataSet, minSupport=0.2)
+    rule = gen_rule(L, supportData, minConf=0.7)
+    print(rule)
