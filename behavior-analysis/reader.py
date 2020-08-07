@@ -61,5 +61,5 @@ def data_handle(idlist,goodslist):
 
 if __name__ == '__main__':
     #print(data_reader())
-    idlist,goodslist=search()
+    idlist,goodslist,_=search()
     print(data_handle(idlist,goodslist))
