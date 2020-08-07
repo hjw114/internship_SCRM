@@ -11,42 +11,32 @@ def data_reader():
     return list_data
 
 def search():
-    i = 0
     j = 0
     db = pymysql.connect(host='wxs.chinaeast.cloudapp.chinacloudapi.cn', user='root', password='Wxs20200730', port=3306,
                          db='demo')  # 数据库
     cursor = db.cursor()  # 游标
-    sql1 = "SELECT user_id FROM user_behavior "
-    cursor.execute(sql1)
-    idlist = []
-    allid = cursor.fetchall()  # 取出数据
-    for s in allid:
-        idlist.append(s[0])
     sql1 = "SELECT goods_id FROM user_behavior "
     cursor.execute(sql1)
     goodslist = []
     allgoods = cursor.fetchall()  # 取出数据
     for s in allgoods:
         goodslist.append(s[0])
+    sql2 = "SELECT times FROM user_behavior "
+    cursor.execute(sql2)
+    timelist = []
+    alltime = cursor.fetchall()  # 取出数据
+    for s in alltime:
+        timelist.append(s[0][5:7])
     db.commit()
     db.close()
     cursor.close()  # 关闭
-    return idlist,goodslist
-
-def data_handle(idlist,goodslist):
-    list_data = []
-    for n in idlist:
-        if n != 0:
-            if idlist[n] == idlist[n - 1]:
-                list_data[i][j] = goodslist[n]
-                j = j + 1
-            else:
-                i = i + 1
-                j = 0
-        list_data[0][0] = goodslist[0]
-    return list_data
+    for s in goodslist:
+        goodslist[j] = int(s / 100)
+        j = j + 1
+    return goodslist,timelist
 
 if __name__ == '__main__':
-    print(data_reader())
-    idlist,goodslist=search()
-    print(data_handle(idlist,goodslist))
+    #print(data_reader())
+    goodslist,timelist=search()
+    print(goodslist)
+    print(timelist)
