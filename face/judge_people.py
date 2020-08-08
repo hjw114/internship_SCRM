@@ -1,6 +1,6 @@
 import cv2
 
-def judge(names):
+def judge():
     jud=0
     num=0
     con=0
@@ -48,5 +48,4 @@ def judge(names):
         return 0
 
 if __name__ == '__main__':
-    names = ['hjw', 'dw']
-    judge(names)
+    judge()

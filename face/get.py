@@ -1,10 +1,10 @@
 import cv2
+import sql_data
 
-def get():
+def get(face_id):
     cap = cv2.VideoCapture(0)  # 调用笔记本内置摄像头，参数为0，如果有其他的摄像头可以调整参数为1,2
     face_detector = cv2.CascadeClassifier(
         r'F:\Anaconda3\envs\openvino\Lib\site-packages\cv2\data\haarcascade_frontalface_default.xml')  # 调用人脸分类器
-    face_id = input('\n User data input,Look at the camera and wait ...')  # 为即将录入的脸标记一个id
     count = 0  # sampleNum用来计数样本数目
     while True:
         success, img = cap.read()  # 从摄像头读取图片
@@ -31,4 +31,6 @@ def get():
     return face_id
 
 if __name__ == '__main__':
-    get()
+    id = sql_data.serach()
+    sql_data.add(id[-1] + 1)
+    get(id)
