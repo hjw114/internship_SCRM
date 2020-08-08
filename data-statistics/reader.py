@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 import pymysql
-import datetime
 
 def data_reader():
     data = pd.read_csv('data.csv')
