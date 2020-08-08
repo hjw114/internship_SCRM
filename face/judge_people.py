@@ -45,7 +45,7 @@ def judge():
     if jud != 0:#判断是否是新用户
         return id
     else:
-        return 0
+        return -1
 
 if __name__ == '__main__':
     judge()
