@@ -28,6 +28,8 @@ def judge():
                 jud = jud + 1
                 num = num + 1
                 con_r = 100 - confidence
+                if con_r >= 50:
+                    jud = 1
                 if (con_r >= con ):
                     con = con_r
                     id = idnum
@@ -42,7 +44,7 @@ def judge():
             break
     cam.release()
     cv2.destroyAllWindows()
-    if jud != 0:#判断是否是新用户
+    if jud == 1:#判断是否是新用户
         return id
     else:
         return -1

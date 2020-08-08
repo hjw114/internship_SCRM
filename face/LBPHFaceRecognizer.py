@@ -13,7 +13,7 @@ def get_images_and_labels(path,detector):#创建一个函数，用于从数据�
         img_np = np.array(img,'uint8')#将图片转化为数组
         if os.path.split(image_path)[-1].split(".")[-1] != 'jpg':
             continue
-        id = int(os.path.split(image_path)[-1].split(".")[1])#为了获取id，将图片和路径分裂并获取
+        id = int(os.path.split(image_path)[-1].split(".")[0])#为了获取id，将图片和路径分裂并获取
         faces = detector.detectMultiScale(img_np)
         for(x,y,w,h) in faces:#将获取的图片和id添加到list中
             face_samples.append(img_np[y:y+h,x:x+w])
