@@ -46,20 +46,16 @@ def save_sql(dict):
     db = pymysql.connect(host='wxs.chinaeast.cloudapp.chinacloudapi.cn', user='root', password='Wxs20200730', port=3306,
                          db='demo')  # 数据库
     cursor = db.cursor()  # 游标
+    sql1 = "insert into goods_number (goods_id,total,spring,summer,autumn,winter) values (%s,%s,%s,%s,%s,%s)"
     for key in dict[0]:
-        cursor.execute("insert into goods_number (goods_id,namber) values(%d,%d)" % (key, dict[0][key]))
-    for key in dict[1]:
-        cursor.execute("insert into goods_number namber values %d" % (dict[1][key]))
-    for key in dict[2]:
-        cursor.execute("insert into goods_number namber values %d" % (dict[2][key]))
-    for key in dict[3]:
-        cursor.execute("insert into goods_number namber values %d" % (dict[3][key]))
-    for key in dict[4]:
-        cursor.execute("insert into goods_number namber values %d" % (dict[4][key]))
+        cursor.execute(sql1, [key, dict[0][key], dict[1].setdefault(key, 0), dict[2].setdefault(key, 0),
+                              dict[3].setdefault(key, 0), dict[4].setdefault(key, 0)])
     db.commit()
     db.close()
     cursor.close()  # 关闭
 
 if __name__ == '__main__':
     goodslist, timelist = reader.search()
-    print(analysis_hot(goodslist,timelist))
+    dict = analysis_hot(goodslist,timelist)
+    print(dict)
+    save_sql(dict)
