@@ -6,7 +6,7 @@ def judge():
     con=0
     id=None
     recognizer = cv2.face.LBPHFaceRecognizer_create()#LBPH识别方法
-    recognizer.read(r'D:\openvino\workspaces\start-history\face_try\model\trainer.yml')#读入之前训练好的模型
+    recognizer.read(r'D:\internship_SCRM\face\model\trainer.yml')#读入之前训练好的模型
     faceCascade = cv2.CascadeClassifier(
         r'F:\Anaconda3\envs\openvino\Lib\site-packages\cv2\data\haarcascade_frontalface_default.xml')#调用人脸分类器
     cam = cv2.VideoCapture(0)#调用摄像头

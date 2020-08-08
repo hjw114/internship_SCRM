@@ -18,7 +18,7 @@ def get(face_id):
             cv2.rectangle(img, (x, y), (x + w, y + w), (255, 0, 0))  # xy为左上角的坐标,w为宽，h为高，用rectangle为人脸标记画框
             count += 1  # 成功框选则样本数增加
             cv2.imwrite(
-                "D:/openvino/workspaces/start-history/face_try/face/." + str(face_id) + '.' + str(count) + '.jpg',
+                "D:/internship_SCRM/face/face/" + str(face_id) + '.' + str(count) + '.jpg',
                 gray[y:y + h, x:x + w])  # 保存图像，把灰度图片看成二维数组来检测人脸区域
             cv2.imshow('image', img)  # 显示图片
         k = cv2.waitKey(1)  # 保持画面的连续。waitkey方法可以绑定按键保证画面的收放，通过q键退出摄像
@@ -31,6 +31,6 @@ def get(face_id):
     return face_id
 
 if __name__ == '__main__':
-    id = sql_data.serach()
-    sql_data.add(id[-1] + 1)
-    get(id)
+    #id = sql_data.serach()
+    #sql_data.add(id[-1] + 1)
+    get(0)

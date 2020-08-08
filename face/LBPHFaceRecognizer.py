@@ -25,10 +25,10 @@ def train(path,detector):
     print('Training...')
     faces, ids = get_images_and_labels(path,detector)  # 训练模型
     recog.train(faces, np.array(ids))  # 保存模型
-    recog.save(r'D:\openvino\workspaces\start-history\face_try\model\trainer.yml')
+    recog.save(r'D:\internship_SCRM\face\model\trainer.yml')
 
 if __name__ == '__main__':
-    path = 'D:/openvino/workspaces/start-history/face_try/face'
+    path = 'D:/internship_SCRM/face/face'
     detector = cv2.CascadeClassifier(
         r'F:\Anaconda3\envs\openvino\Lib\site-packages\cv2\data\haarcascade_frontalface_default.xml')  # 调用人脸分类器
     train(path,detector)
