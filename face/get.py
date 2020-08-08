@@ -31,6 +31,6 @@ def get(face_id):
     return face_id
 
 if __name__ == '__main__':
-    #id = sql_data.serach()
-    #sql_data.add(id[-1] + 1)
-    get(0)
+    id = sql_data.serach()
+    sql_data.add(id[-1] + 1)
+    get(id)
