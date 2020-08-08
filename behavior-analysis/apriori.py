@@ -78,17 +78,21 @@ def aprioriGen(Lk, k):  # 创建候选K项集 ##LK为频繁K项集
     return retList
 
 def apriori(dataSet, minSupport=0.2):
+    n=0
     C1 = createC1(dataSet)
     D = list(map(set, dataSet))  # 使用list()转换为列表
     L1, supportData = calSupport(D, C1, minSupport)
     L = [L1]  # 加列表框，使得1项集为一个单独元素
     k = 2
     while (len(L[k - 2]) > 0):
+        n=n+1
+        print(n)
         Ck = aprioriGen(L[k - 2], k)
         Lk, supK = scanD(D, Ck, minSupport)  # scan DB to get Lk
         supportData.update(supK)
         L.append(Lk)  # L最后一个值为空集
         k += 1
+    n = 0
     del L[-1]  # 删除最后一个空集
     return L, supportData  # L为频繁项集，为一个列表，1，2，3项集分别为一个元素。
 
@@ -107,7 +111,6 @@ def calcConf(freqSet, H, supportData, ruleList, minConf=0.7):
         conf = supportData[freqSet] / supportData[freqSet - conseq]  # 计算置信度
         # 提升度lift计算lift = p(a & b) / p(a)*p(b)
         lift = supportData[freqSet] / (supportData[conseq] * supportData[freqSet - conseq])
-
         if conf >= minConf and lift > 1:
             #print(freqSet - conseq, '-->', conseq, '支持度', round(supportData[freqSet - conseq], 2), '置信度：', conf,
             #      'lift值为：', round(lift, 2))

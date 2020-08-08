@@ -16,7 +16,7 @@ def search():
     db = pymysql.connect(host='wxs.chinaeast.cloudapp.chinacloudapi.cn', user='root', password='Wxs20200730', port=3306,
                          db='demo')  # 数据库
     cursor = db.cursor()  # 游标
-    sql1 = "SELECT user_id FROM user_behavior "
+    sql1 = "SELECT users_id FROM user_behavior "
     cursor.execute(sql1)
     idlist = []
     allid = cursor.fetchall()  # 取出数据
