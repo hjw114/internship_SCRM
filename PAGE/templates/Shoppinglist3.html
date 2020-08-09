@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+    function sell() {
+        alert("已加入购物车")
+    }
+</script>
+<script src="../static/js/jquery-3.4.1.min.js"></script>
+<head>
+    <title>商品信息</title>
+    <meta charset="UTF-8">
+<style>
+* {
+    box-sizing: border-box;
+}
+
+/* body 样式,字体列表 */
+body {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    margin: 0;
+}
+
+/* 背景设置 */
+.background{
+    margin:0px;
+    background: url(../static/5.jpg) no-repeat;
+    background-size:100% 100%;
+    background-attachment:fixed;
+}
+
+
+/* 标题 */
+.header {
+    padding-top: 30px;
+    text-align: center;
+    width: 100%;
+    color: #6699CC;
+}
+
+/* 标题字体加大 */
+.header h1 {
+    font-size: 40px;
+}
+
+/* 标题字体样式 */
+.slideShine{
+     background:#336699 -webkit-linear-gradient(left, #009999,#66CCCC 50%, #ffff00 90%,#CCFFFF) no-repeat 0 0;
+     background-size:20% 100%;
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     font-size: 36px;
+     text-align: center;
+     font-weight: bold;
+     text-decoration: underline;
+}
+.slideShine {-webkit-animation: slideShine 4s linear infinite;animation: slideShine 4s linear infinite;}
+@-webkit-keyframes slideShine {
+     0% {
+          background-position: 0 0;
+        }
+     100% {
+          background-position: 100% 100%;
+      }
+ }
+ @keyframes slideShine {
+      0% {background-position: 0 0; }
+     100% {background-position: 100% 100%; }
+ }
+
+
+
+/* 导航，内容溢出元素框时隐藏 */
+.navbar {
+    font-weight: bolder;
+    background:#000;
+    overflow: hidden;
+    alpha(Opacity=4);
+    -moz-opacity:0.4;
+    opacity: 0.4;
+}
+
+/* 导航栏样式 */
+.navbar a {
+    font-size: 18px;
+    font-weight: bold;
+   cursor: pointer;
+    color: #fae063;
+  position: relative;
+  padding: 0.5em 1em;
+   z-index: 1;
+  overflow: hidden;
+    text-decoration: none; /* 文本装饰线 */
+}
+
+
+/* 导航栏效果 */
+.navbar a::before {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background-color: #fae063;
+  transform-origin: center;
+  transform: translate3d(-40%, -40%, 0) scale(0, 0);
+  transition: transform 0.45s ease-in-out;
+}
+
+/* 右侧链接*/
+.navbar a.right {
+
+}
+
+/*链接hover效果 */
+.navbar a:hover {
+     cursor: pointer;
+    color: #034689;
+}
+.navbar a:hover::before {
+  transform: translate3d(-50%, -50%, 0) scale(15, 15);
+}
+
+/* 主区域 */
+.main1 {
+    background-color: white;
+    padding: 5px;
+    marin:10px;
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 10px;
+
+}
+
+/* 表格第一行 */
+.td1 {
+    border-width: 2px;
+    border-style: solid;
+    border-color: white;
+    color: white;
+    background-color:rgb(81, 130, 187);
+}
+
+/* 表格其他行 */
+.td2{
+    border-width: 2px;
+    border-style: solid;
+    border-color: white;
+    color: #000;
+    background-color: rgb(202, 227, 253);
+}
+
+.button{
+    background-color: #6699CC; /* Green */
+    padding: 10px 25px;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.button:hover {
+    background-color: #8ab6e2;
+    color:white;
+}
+
+/* 底部 */
+.footer {
+    height:80px;
+    padding: 5px;
+    text-align: center;
+    color:#6699CC;
+    margin-top: 5px;
+}
+
+/* 列容器 */
+.row {
+    display: -ms-flexbox; /* IE10 弹性布局*/
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+}
+
+/* 分割线 */
+.link-top {
+            width: 96%;
+            height: 1px;
+            border-top: solid #c1c1c1 1px;
+            margin-top: 40px;
+            margin-left: 2%;
+            margin-right: 2%;
+            margin-bottom: 40px;
+        }
+
+/* 响应式布局 - 在屏幕设备宽度尺寸小于 700px 时, 让两栏上下堆叠显示 */
+@media screen and (max-width: 700px) {
+    .row {
+        flex-direction: column;
+    }
+}
+
+/* 响应式布局 - 在屏幕设备宽度尺寸小于 400px 时, 让导航栏目上下堆叠显示 */
+@media screen and (max-width: 400px) {
+    .navbar a {
+        float: none;
+        width: 100%;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="background">
+
+    <div class="header">
+    <div style="font-size: 40px" class="slideShine">极速生活 无限可能</div>
+    <img src="../static/logo.png" align="center" style="height: 100px;width: 100px">
+
+<div class="navbar">
+  <a href="http://127.0.0.1:5000/homepage_people" style="float: left">返回首页</a>
+  <a href="http://127.0.0.1:5000/Shopping_Cart" style="float: right">购物车</a>
+  <a href="http://127.0.0.1:5000/Personal_homepage" style="float: right">个人中心</a>
+</div>
+    </div>
+</div>
+<div class="row" style="background-color: #f6f6f6">
+    <div class="link-top"></div>
+    <div class="main1">
+<br>
+<center><img src="../static/70100101.jpg" width="200" height="200"></center>
+<table cellspacing="10"  bgcolor="#99CCFF"
+       style="margin-bottom:50px;font-size:17px;border-collapse:collapse"
+       align="center" width="400" height="200">
+<tr align="center">
+    <td class="td1">商品名称</td>
+	<td class="td2" colspan="2">TensorFlow：实战Google深度学习框架（第2版）(博文视点出品)</td></tr>
+<tr align="center">
+    <td class="td2">月销量：102158</td>
+	<td class="td2" colspan="2">累积评价：25235</td></tr>
+</table>
+<center>
+<input  type="button" class="button" value="加入购物车" id="btn" ></center>
+                  <script type="text/javascript">
+                  $(
+                          $("#btn").click(function() {
+                              alert("已加入购物车")
+
+                              $.ajax({
+                                  url: "/ajax",
+                                  type: "post",
+                                  data: {"action":"2","goods_id":"70100101","time":"2020-08-10 09:09:33"},
+                              success:function (datas) {
+                        console.log("成功了")
+                        console.log(datas)
+
+                    },
+                    error:function () {
+                        console.log("失败了")
+                    }})}))
+
+              </script>
+    </div>
+</div>
+<div class="background">
+    <div class="footer">
+    <h2>-广告位招租-</h2>
+</div>
+</div>
+</body>
+</html>

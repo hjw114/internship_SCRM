@@ -14,19 +14,21 @@ body {
     margin: 0;
 }
 
-.wrapper{
-    width: 1270px;
-    display: flex;
-    min-height: 100vh; /*1vh表示浏览器高度的1%，100vh为浏览器高度，感觉这个挺好的*/
-    flex-direction: column;/*灵活的项垂直显示*/
+/* 背景设置 */
+.background{
+    margin:0px;
+    background: url(../static/5.jpg) no-repeat;
+    background-size:100% 100%;
+    background-attachment:fixed;
 }
+
 
 /* 标题 */
 .header {
-    padding: 30px;
+    padding-top: 30px;
     text-align: center;
-    background: #99CCFF;
-    color: white;
+    width: 100%;
+    color: #6699CC;
 }
 
 /* 标题字体加大 */
@@ -34,39 +36,98 @@ body {
     font-size: 40px;
 }
 
+/* 标题字体样式 */
+.slideShine{
+     background:#336699 -webkit-linear-gradient(left, #009999,#66CCCC 50%, #ffff00 90%,#CCFFFF) no-repeat 0 0;
+     background-size:20% 100%;
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     font-size: 36px;
+     text-align: center;
+     font-weight: bold;
+     text-decoration: underline;
+}
+.slideShine {-webkit-animation: slideShine 4s linear infinite;animation: slideShine 4s linear infinite;}
+@-webkit-keyframes slideShine {
+     0% {
+          background-position: 0 0;
+        }
+     100% {
+          background-position: 100% 100%;
+      }
+ }
+ @keyframes slideShine {
+      0% {background-position: 0 0; }
+     100% {background-position: 100% 100%; }
+ }
+
+
+
 /* 导航，内容溢出元素框时隐藏 */
 .navbar {
+    font-weight: bolder;
+    background:#000;
     overflow: hidden;
-    background-color: #6699CC;
+    alpha(Opacity=4);
+    -moz-opacity:0.4;
+    opacity: 0.4;
 }
 
 /* 导航栏样式 */
 .navbar a {
-    float: left;
-    display: block; /* 块状元素 */
-    color: white;
-    text-align: center;
-    padding: 14px 20px;
+    font-size: 18px;
+    font-weight: bold;
+   cursor: pointer;
+    color: #fae063;
+  position: relative;
+  padding: 0.5em 1em;
+   z-index: 1;
+  overflow: hidden;
     text-decoration: none; /* 文本装饰线 */
+}
+
+
+/* 导航栏效果 */
+.navbar a::before {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background-color: #fae063;
+  transform-origin: center;
+  transform: translate3d(-40%, -40%, 0) scale(0, 0);
+  transition: transform 0.45s ease-in-out;
 }
 
 /* 右侧链接*/
 .navbar a.right {
-    float: right;
+
 }
 
-.content{
-    flex: 1;
+/*链接hover效果 */
+.navbar a:hover {
+     cursor: pointer;
+    color: #034689;
+}
+.navbar a:hover::before {
+  transform: translate3d(-50%, -50%, 0) scale(15, 15);
 }
 
-.jia a{
-    vertical-align: middle;
+/* 主区域 */
+.main1 {
+    background-color: white;
+    padding: 5px;
+    marin:10px;
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 10px;
+
 }
-.jia a:hover img {
-    filter:alpha(Opacity=80);
-    -moz-opacity:0.8;
-    opacity: 0.8;
-}
+
 
 .button{
     background-color: #6699CC; /* Green */
@@ -85,26 +146,23 @@ body {
     color:white;
 }
 
-/* 鼠标移动到链接的颜色 */
-.navbar a:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-.bottom {
-    background-color: #f1f1f1;
-    padding: 20px;
-}
 
 /* 底部 */
 .footer {
     height:80px;
     padding: 5px;
     text-align: center;
-    color:white;
-    background: #99CCFF;
+    color:#6699CC;
+    margin-top: 5px;
 }
 
+/* 列容器 */
+.row {
+    display: -ms-flexbox; /* IE10 弹性布局*/
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+}
 
 /* 响应式布局 - 在屏幕设备宽度尺寸小于 700px 时, 让两栏上下堆叠显示 */
 @media screen and (max-width: 700px) {
@@ -138,92 +196,253 @@ body {
 }
 
 .fakeimg2 {
-    background-color: #aaa;
-    width: 192px;
-    height:210px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    background-color: #e3e1e1;
+    width: 15%;
+    height:280px;
+    padding: 5px;
     float: left;
     display:inline;
-    margin:5px;
+    margin:3px;
 }
-</style>
 
+.goods a:hover img {
+    filter:alpha(Opacity=70);
+    -moz-opacity:0.7;
+    opacity: 0.7;
+}
+.font{
+    font-size: 14px;
+    font-family:'Arial';
+    margin: 5px;
+    height:85px;
+    color: #363636;
+}
+    /* 分割线 */
+.link-top {
+            width: 96%;
+            height: 1px;
+            border-top: solid #c1c1c1 1px;
+            margin-top: 40px;
+            margin-left: 2%;
+            margin-right: 2%;
+            margin-bottom: 40px;
+        }
+
+</style>
+<script>
+	window.onload = function(){
+       function cart(){
+           this.abtn = document.querySelectorAll('input');
+           this.ogood_num = document.querySelector('.goods_num');
+           this.opricetal = document.querySelector('.pricetal');
+           this.opricest = document.querySelector('.pricest');
+           this.totalnum = 0;
+       };
+        //小计:  商品数量 * 商品单价
+      cart.prototype.getsubtotal = function(goodsnum,unitprice){
+          return parseInt(goodsnum) * parseFloat(unitprice) ;
+      };
+      // 计算商品的总计花费
+      cart.prototype.gettotal = function(){
+          var asubtotal = document.querySelectorAll('.subtal');
+          var res = 0;
+          for(var i=0,len=asubtotal.length;i<len;i++){
+              res += parseFloat(asubtotal[i].innerHTML);
+          };
+          return res;
+      };
+      // 寻找购物车中已经选中的产品的最大单价
+      cart.prototype.compareMaxunit = function(){
+          var anum = document.querySelectorAll('.num');
+          var aunit = document.querySelectorAll('.unit');
+          var temp = 0;
+          for(var i=0,len=anum.length;i<len;i++){
+              if(anum[i].innerHTML!=0){
+                  if(temp<parseFloat(aunit[i].innerHTML)){
+                      temp = parseFloat(aunit[i].innerHTML);
+                  }
+              }
+          };
+          return temp;
+      };
+      // 点击“+”号按钮触发的购物车商品数量，花费，最大价格的变动
+      cart.prototype.plus = function(obtn){
+          var onum = obtn.parentNode.querySelector('.num');
+          var n = parseInt(onum.innerHTML);
+          onum.innerHTML = ++n ;
+          this.totalnum++;
+          var oUnit = obtn.parentNode.parentNode.parentNode.querySelector('.unit');
+          var osubtotal = obtn.parentNode.parentNode.parentNode.querySelector('.subtal');
+          osubtotal.innerHTML = this.getsubtotal(onum.innerHTML,oUnit.innerHTML);
+          this.ogood_num.innerHTML = this.totalnum;
+          this.opricetal.innerHTML = this.gettotal();
+          this.opricest.innerHTML = this.compareMaxunit();
+      };
+      // 点击“-”号按钮触发的购物车商品数量，花费，最大价格的变动
+       cart.prototype.minus = function(obtn){
+          var onum = obtn.parentNode.querySelector('.num');
+          if(parseInt(onum.innerHTML)>0){
+              var n = parseInt(onum.innerHTML);
+              onum.innerHTML = --n ;
+              this.totalnum--;
+              var oUnit = obtn.parentNode.parentNode.parentNode.querySelector('.unit');
+              var osubtotal = obtn.parentNode.parentNode.parentNode.querySelector('.subtal');
+              osubtotal.innerHTML = this.getsubtotal(onum.innerHTML,oUnit.innerHTML);
+              this.ogood_num.innerHTML = this.totalnum;
+              this.opricetal.innerHTML = this.gettotal();
+              this.opricest.innerHTML = this.compareMaxunit();
+          }
+      };
+      // 获取已买商品的总计数量
+      cart.prototype.getNumbertal = function(){
+           var anum = document.querySelectorAll('.num');
+           var res_num = 0;
+           for(var i =0;i<anum.length;i++){
+               res_num += parseInt( anum[i].innerHTML ) ;
+           }
+           return res_num ;
+      }
+      // 删除按钮触发的购物车商品数量，花费，最大价格的变动
+      cart.prototype.del = function(obtn){
+          var odel = obtn.parentNode.parentNode;
+          var oparent = odel.parentNode;
+          oparent.removeChild(odel);
+          this.ogood_num.innerHTML = this.getNumbertal();
+          this.opricetal.innerHTML = this.gettotal();
+          this.opricest.innerHTML = this.compareMaxunit();
+          this.xuhaosort();
+      }
+
+      // 绑定“+”，“-”，删除按钮的点击事件
+      cart.prototype.bind = function(){
+          var that = this ;
+          for(var i=0;i<this.abtn.length;i++){
+              if(i%2 !=0){
+                  this.abtn[i].onclick = function(){
+                      that.plus(this);
+                  }
+             }else{
+                   this.abtn[i].onclick = function(){
+                     that.minus(this);
+                 }
+             }
+         };
+         var delbtn = document.querySelectorAll('.del');
+         for(var i=0;i<delbtn.length;i++){
+             delbtn[i].onclick = function(){
+                 that.del(this);
+             }}
+        };
+      var oCart = new cart();
+     oCart.bind();}
+
+</script>
+    <script src="../static/js/jquery-3.4.1.min.js"></script>
 </head>
 
-<body>
-<div class="wrapper">
-<div class="header">
-  <h1>极速生活 无限可能</h1>
-  <p>无限速团队制作</p>
+<body onunload="ha();">
+<div class="background">
+
+    <div class="header">
+    <div style="font-size: 40px" class="slideShine">极速生活 无限可能</div>
+    <img src="../static/logo.png" align="center" style="height: 100px;width: 100px">
+
+    <div class="navbar">
+    <a href="http://127.0.0.1:5000/homepage_people" style="float: left">返回首页</a>
+    <a href="http://127.0.0.1:5000/Personal_homepage" style="float: right">个人中心</a>
+</div>
 </div>
 
-
-
-<div class="navbar">
-  <a href="http://127.0.0.1:5000/homepage_people">返回首页</a>
-  <a href="http://127.0.0.1:5000/Personal_homepage" class="right">个人中心</a>
 </div>
-<div class="content">
-<h1 align="center">购物车</h1>
+
+<div class="row" style="background-color: #f6f6f6">
+<div class="link-top"></div>
+    <div class="main1">
+<center><h1>购物车</h1></center>
 <h2 style="font-size:20px" align="center">亲亲，快把我带走吧~</h2>
 
-<table  cellspacing="15"  style="color:black;font-size:20px;border-collapse:collapse;" align="center" border="1"
-width="1000px" height="200px">
-<tr align="center">
-  <td class="td1">选择</td>
-  <td class="td1">商品信息</td>
-  <td class="td1">单价</td>
-  <td class="td1">购买数量</td>
-  <td class="td1">金额</td>
-  <td class="td1">操作</td></tr>
-</tr>
+<table  cellspacing="15"  style="color:black;font-size:15px;border-collapse:collapse;" align="center" border="1"
+width="800px" height="200px">
+<thead>
+             <tr align="center">
+                 <th class="td1" style="width:500px">商品名称</th>
+                 <th class="td1">数量</th>
+                 <th class="td1">单价</th>
+                 <th class="td1">小计</th>
+                 <th class="td1">操作</th>
+             </tr>
+         </thead>
+ <tbody>
+ {% for goods in u%}
+             <tr align="center">
+                 <td class="td2">{{ goods[1]}}</td>
+                 <td class="td2" ID= "num" ><span class="jiajie">
+                     <input type="button" value="-">
+                     <span class="num" >0</span><input type="button" value="+"></span></td>
+                 <td class="td2"><span>单价：</span><span class="unit">{{ goods[2]}}</span></td>
+                 <td class="td2" ID="subtal"><span>小计：</span><span class="subtal" >0</span></td>
+                 <td class="td2"><button class="del">删除</button></td>
+             </tr>
+              {% endfor %}
+             <tr>
+                 <td  colspan="6" class="td2" >
+                     <span>商品一共 <span class="goods_num">0</span> 件;
+                         共计花费 <span class="pricetal" ID="total">0</span> 元;
+                         其中最贵的商品单价是 <span class="pricest">0</span> 元
+                     </span>
+                 </td>
+             </tr>
+ </tbody>
+    </table>
 
-<tr align="center">
-  <td class="td2"><form><input type = "checkbox" style="zoom:200%;"></form></td>
-  <td class="td2">
-      <a href="http://127.0.0.1:5000/shoppinglist"><img src="../static/pumpkinpie.jpg" width="100" height="100" /></a>
-        <center>南瓜饼</center></td>
-  <td class="td2">3</td>
-  <td class="td2"><form><input type="number" name="quantity" min="1" max="5" style="zoom:200%;"></form></td>
-  <td class="td2">6</td>
-  <td class="td2"><a href="#" style="font-size:20px">删除</a></td>
-</tr>
-</table>
 <h4 align="center"><a href="http://127.0.0.1:5000/check" class="button">结算</a></h4>
+      <script>
+function ha() {
+    var num=$('#num').text();
+    var subtal=$('#subtal').text();
+    var total=$('#total').text();
+     {% for goods in u%}
+        localStorage.setItem("name","{{ goods[1]}}");
+        localStorage.setItem("unit","{{ goods[2]}}");
+        localStorage.setItem("num",num);
+        localStorage.setItem("subtal",subtal);
+        localStorage.setItem("total",total);
+        {% endfor %}
+}
+</script>
+
 </div>
 
-<div class="bottom">
-	<h2 style="color: #f68686">-根据您的购买历史，我们猜您可能会喜欢以下商品-</h2>
-<div class="fakeimg2"  >
-            <div align="center"><img src="../static/naifen.jpg" width=160px height=150px ></div>
-            <center>奶粉
-                <div class="jia">销售价：￥58
-                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
-            </center>
-        </div>
+     <div class="link-top"></div>
+    <h2 style="color: #f68686">-根据您的购买历史，我们猜您可能会喜欢以下商品-</h2>
+<div class="main1">
 
-        <div class="fakeimg2" >
-            <div align="center"><img src="../static/home2.PNG" width=160px height=150px ></div>
-            <center>简约沙发
-                <div class="jia">销售价：￥998
-                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
-            </center>
-        </div>
+<div class="fakeimg2" >
+          <div align="center" class="goods"><a href="http://127.0.0.1:5000/shoppinglist">
+              <img src="../static/30300002.jpg" width=140px height=150px ></a></div>
+          <div class="font" style="font-size: 13px">民福齐食 雪花南瓜饼 300g 传统糕点 油炸速冻零食点心</div>
+          <center>销售价：￥10</center>
+      </div>
 
-        <div class="fakeimg2" >
-            <div align="center"><img src="../static/home3.PNG" width=160px height=150px ></div>
-            <center>普通沙发
-                <div class="jia">销售价：￥1598
-                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
-            </center>
-        </div>
+      <div class="fakeimg2"  >
+          <div align="center" class="goods"><a href="#">
+              <img src="../static/{{ u1[1][0] }}.jpg" width=140px height=150px ></a></div>
+          <div class="font"style="font-size: 13px">{{ u1[1][1] }}</div>
+              <center>销售价：￥{{ u1[1][2] }}</center>
+      </div>
+
+      <div class="fakeimg2" >
+          <div align="center" class="goods"><a href="#">
+              <img src="../static/{{ u1[2][0] }}.jpg" width=140px height=150px ></a></div>
+         <div class="font"style="font-size: 13px">{{ u1[2][1] }}</div>
+              <center>销售价：￥{{ u1[2][2] }}</center>
+      </div>
 </div>
 </div>
+<div class="background">
+    <div class="footer">
+    <h2>-广告位招租-</h2>
 </div>
-<div class="footer">
-    <h2>广告位招租</h2>
-    </div>
-
+</div>
 </body>
 </html>

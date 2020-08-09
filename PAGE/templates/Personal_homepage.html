@@ -13,12 +13,21 @@ body {
     margin: 0;
 }
 
+/* 背景设置 */
+.background{
+    margin:0px;
+    background: url(../static/5.jpg) no-repeat;
+    background-size:100% 100%;
+    background-attachment:fixed;
+}
+
+
 /* 标题 */
 .header {
-    padding: 30px;
+    padding-top: 30px;
     text-align: center;
-    background: #99CCFF;
-    color: white;
+    width: 100%;
+    color: #6699CC;
 }
 
 /* 标题字体加大 */
@@ -26,31 +35,118 @@ body {
     font-size: 40px;
 }
 
+/* 标题字体样式 */
+.slideShine{
+     background:#336699 -webkit-linear-gradient(left, #009999,#66CCCC 50%, #ffff00 90%,#CCFFFF) no-repeat 0 0;
+     background-size:20% 100%;
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     font-size: 36px;
+     text-align: center;
+     font-weight: bold;
+     text-decoration: underline;
+}
+.slideShine {-webkit-animation: slideShine 4s linear infinite;animation: slideShine 4s linear infinite;}
+@-webkit-keyframes slideShine {
+     0% {
+          background-position: 0 0;
+        }
+     100% {
+          background-position: 100% 100%;
+      }
+ }
+ @keyframes slideShine {
+      0% {background-position: 0 0; }
+     100% {background-position: 100% 100%; }
+ }
+
+
+
 /* 导航，内容溢出元素框时隐藏 */
 .navbar {
+    font-weight: bolder;
+    background:#000;
     overflow: hidden;
-    background-color: #6699CC;
+    alpha(Opacity=4);
+    -moz-opacity:0.4;
+    opacity: 0.4;
 }
 
 /* 导航栏样式 */
 .navbar a {
-    float: left;
-    display: block; /* 块状元素 */
-    color: white;
-    text-align: center;
-    padding: 14px 20px;
+    font-size: 18px;
+    font-weight: bold;
+   cursor: pointer;
+    color: #fae063;
+  position: relative;
+  padding: 0.5em 1em;
+   z-index: 1;
+  overflow: hidden;
     text-decoration: none; /* 文本装饰线 */
+}
+
+
+/* 导航栏效果 */
+.navbar a::before {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background-color: #fae063;
+  transform-origin: center;
+  transform: translate3d(-40%, -40%, 0) scale(0, 0);
+  transition: transform 0.45s ease-in-out;
 }
 
 /* 右侧链接*/
 .navbar a.right {
-    float: right;
+
 }
 
-/* 鼠标移动到链接的颜色 */
+/*链接hover效果 */
 .navbar a:hover {
-    background-color: #ddd;
-    color: black;
+     cursor: pointer;
+    color: #034689;
+}
+.navbar a:hover::before {
+  transform: translate3d(-50%, -50%, 0) scale(15, 15);
+}
+
+/* 分割线 */
+.link-top {
+            width: 98%;
+            height: 1px;
+            border-top: solid #747373 1px;
+            margin-top: 20px;
+            margin-left: 1%;
+
+        }
+
+/* 主区域 */
+.main1 {
+    padding: 20px;
+    width: 50%;
+    margin-bottom: 10px;
+    margin-left: 25%;
+    margin-top: 10px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, .3);
+    box-shadow: 3px 3px 6px 3px rgba(0, 0, 0, .3);
+
+}
+
+main1::before{
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    filter: blur(20px);
+    z-index: -1;
+    margin: -30px;
 }
 
 /* 表格第一列 */
@@ -72,22 +168,36 @@ body {
 .tr1{
     border:1px solid rgb(81, 130, 187);
     background-color: white;
-    color:rgb(81, 130, 187);}
+    color:rgb(81, 130, 187);
+}
 
 .tr2{
     border:1px solid rgb(81, 130, 187);
     background-color:rgb(202, 227, 253);
-    color:rgb(81, 130, 187);}
+    color:rgb(81, 130, 187);
+}
 
 
 
 /* 底部 */
 .footer {
+    background:#000;
     height:80px;
     padding: 5px;
     text-align: center;
-    color:white;
-    background: #99CCFF;
+    color: white;
+    alpha(Opacity=1);
+    -moz-opacity:0.1;
+    opacity: 0.1;
+    margin-top: 50px;
+}
+
+/* 列容器 */
+.row {
+    display: -ms-flexbox; /* IE10 弹性布局*/
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
 }
 
 /* 响应式布局 - 在屏幕设备宽度尺寸小于 400px 时, 让导航栏目上下堆叠显示 */
@@ -99,68 +209,69 @@ body {
 }
 </style>
 </head>
+<body>
+<div class="background">
 <div class="header">
-  <h1>极速生活 无限可能</h1>
-  <p>无限速团队制作</p>
-</div>
+  <div style="font-size: 40px" class="slideShine">极速生活 无限可能</div>
+  <img src="../static/logo.png" align="center" style="height: 100px;width: 100px">
 
 <div class="navbar">
-  <a href="http://127.0.0.1:5000/homepage_people">返回首页</a>
-  <a class="right" href="http://127.0.0.1:5000/Shopping_Cart">购物车</a>
+  <a href="http://127.0.0.1:5000/homepage_people" style="float: left">返回首页</a>
+  <a class="right" href="http://127.0.0.1:5000/Shopping_Cart"  style="float: right">购物车</a>
 </div>
-
-<h2 align="center">-我的主页- </h2>
-<center><h3>个人信息</h3></center>
-<table style="font-size:20px;margin-top:10px; border-collapse:collapse;"
+</div>
+<h1 align="center" style="color: #7f89a8;
+  text-shadow: -1px -1px 0 #fff,1px 1px 0 #333,1px 1px 0 #444;">-我的主页- </h1>
+    <div class="row" >
+    <div class="main1">
+<center><h2 style="color: #336699;
+  text-shadow: -1px -1px 0 #fff,1px 1px 0 #333,1px 1px 0 #444;">个人信息</h2></center>
+<table  style="font-size:20px;margin-top:10px; border-collapse:collapse; border-radius: 6px;"
        width="400" height="200" align="center">
 <tr align="center">
-    <td class="td1">昵称</td>
-    <td class="td2">小松</td>
+    <td class="td1">用户姓名</td>
+    <td class="td2">{{u[0][0]}}</td>
 </tr>
 <tr align="center">
     <td class="td1">手机号码</td>
-    <td class="td2">18001161256</td>
+    <td class="td2">{{u[0][1]}}</td>
 </tr>
 <tr align="center">
     <td class="td1">住址</td>
-    <td class="td2">xxxxxx</td>
+    <td class="td2">{{u[0][2]}}</td>
 </tr>
 </table>
-<center><h3>消费记录</h3></center>
+    </div>
+
+    <div class="main1">
+<center><h2 style="color: #336699;
+  text-shadow: -1px -1px 0 #fff,1px 1px 0 #333,1px 1px 0 #444;">消费记录</h2></center>
 <table cellspacing="15"
-       style="font-size:20px;margin-top:10px;margin-bottom:100px;border-collapse:collapse;"
-       align="center" tr="border:1px" td="border:0px;" width="400">
-    <tr  class="tr1" style="font-weight: bold" align="center">
+       style="font-size:12px;margin-top:10px;margin-bottom:100px;border-collapse:collapse;"
+       align="center" tr="border:1px" td="border:0px;" width="500">
+    <tr  class="tr1" style="font-weight: bold;" align="center">
         <td>日期</td>
         <td>商品</td>
-        <td>数量</td>
-        <td>合计</td>
+        <td>价格</td>
     </tr>
+    {% for time1 in times %}
+        {% for goods in goods_information%}
     <tr class="tr1" align="center">
-        <td>2020.8.1</td>
-        <td>南瓜饼</td>
-        <td>2</td>
-        <td>6元</td>
+        <td>{{ time1[0] }}</td>
+        <td style="width: 320px">{{ goods[0] }}</td>
+        <td>{{ goods[1] }}元</td>
     </tr>
-    <tr class="tr2" align="center">
-        <td>2020.7.31</td>
-        <td>沙琪玛</td>
-        <td>3</td>
-        <td>9元</td>
-    </tr>
-    <tr class="tr1" align="center">
-        <td>2020.7.30</td>
-        <td>裤子</td>
-        <td>1</td>
-        <td>59元</td>
-    </tr>
-    <tr class="tr2" align="center">
-        <td>2020.7.29</td>
-        <td>椅子</td>
-        <td>3</td>
-        <td>90元</td>
-    </tr>
+        {% endfor %}
+    {% endfor %}
 </table>
 
-<div class="footer">
-    <h2>广告位招租</h2>
+    </div>
+        <div class="link-top"></div>
+    </div>
+    <div class="footer">
+    <h2>-广告位招租-</h2>
+    </div>
+    </div>
+</div>
+
+</body>

@@ -5,7 +5,7 @@
     function sell() {
         alert("请先登录")
     }
-</script>
+    </script>
 
 <head>
 <title>游客主页</title>
@@ -22,12 +22,19 @@ body {
     margin: 0;
 }
 
+/* 背景设置 */
+.background{
+    margin:0px;
+    background: url(../static/5.jpg) no-repeat;
+    background-size:100% 100%;
+    background-attachment:fixed;
+}
 /* 标题 */
 .header {
-    padding: 30px;
+    padding-top: 30px;
     text-align: center;
-    background: #99CCFF;
-    color: white;
+    width: 100%;
+    color: #6699CC;
 }
 
 /* 标题字体加大 */
@@ -35,36 +42,295 @@ body {
     font-size: 40px;
 }
 
+/* 标题字体样式 */
+.slideShine{
+     background:#336699 -webkit-linear-gradient(left, #009999,#66CCCC 50%, #ffff00 90%,#CCFFFF) no-repeat 0 0;
+     background-size:20% 100%;
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     font-size: 36px;
+     text-align: center;
+     font-weight: bold;
+     text-decoration: underline;
+}
+.slideShine {-webkit-animation: slideShine 4s linear infinite;animation: slideShine 4s linear infinite;}
+@-webkit-keyframes slideShine {
+     0% {
+          background-position: 0 0;
+        }
+     100% {
+          background-position: 100% 100%;
+      }
+ }
+ @keyframes slideShine {
+      0% {background-position: 0 0; }
+     100% {background-position: 100% 100%; }
+ }
+
+
+
 /* 导航，内容溢出元素框时隐藏 */
 .navbar {
+    font-weight: bolder;
+    background:#000;
     overflow: hidden;
-    background-color: #6699CC;
+    alpha(Opacity=4);
+    -moz-opacity:0.4;
+    opacity: 0.4;
 }
 
 /* 导航栏样式 */
 .navbar a {
-    float: left;
-    display: block; /* 块状元素 */
-    color: white;
-    text-align: center;
-    padding: 14px 20px;
+    font-size: 18px;
+    font-weight: bold;
+   cursor: pointer;
+    color: #fae063;
+  position: relative;
+  padding: 0.5em 1em;
+   z-index: 1;
+  overflow: hidden;
     text-decoration: none; /* 文本装饰线 */
+}
+
+
+input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 1px solid #101010;
+    border-radius: 4px;
+    font-size: 14px;
+    color:black;
+    background-image: url("../static/sou.jpg");
+    background-size: 20px,20px;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+    float:left;
+}
+
+input[type=text]:focus {
+    width: 20%;
+}
+
+
+/* 导航栏效果 */
+.navbar a::before {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background-color: #fae063;
+  transform-origin: center;
+  transform: translate3d(-40%, -40%, 0) scale(0, 0);
+  transition: transform 0.45s ease-in-out;
 }
 
 /* 右侧链接*/
 .navbar a.right {
-    float: right;
+
 }
 
-/* 鼠标移动到链接的颜色 */
+/*链接hover效果 */
 .navbar a:hover {
-    background-color: #ddd;
-    color: black;
+     cursor: pointer;
+    color: #034689;
 }
-.main {
+.navbar a:hover::before {
+  transform: translate3d(-50%, -50%, 0) scale(15, 15);
+}
+
+
+ul,li{
+list-style: none;
+}
+/*css reset end*/
+
+/*css public start*/
+.floatfix {
+*zoom: 1;
+}
+.floatfix:after {
+content: "";
+display: table;
+clear: both;
+}
+/*css public end*/
+
+/*slider start*/
+.slider-contaner{
+    width:50%;
+    height:10%;
+   margin-left: 23%;
+position:relative;
+}
+.slider-item + .slider-item{
+opacity:0;
+}
+.slider-item{
+width:100%;
+position:absolute;
+animation-timing-function: linear;
+animation-name:fade;
+animation-iteration-count: infinite;
+background-size:100%;
+}
+.focus-container{
+position:absolute;
+z-index:7;
+margin:0 auto;
+left:0;
+right:0;
+}
+.focus-container li{
+width:10px;
+height:10px;
+border-radius:50%;
+float:left;
+margin-right:10px;
+background:#fff;
+}
+.focus-item{
+width:100%;
+height:100%;
+border-radius:inherit;
+animation-timing-function: linear;
+animation-name:fade;
+animation-iteration-count: infinite;
+}
+.focus-item2,.focus-item3,.focus-item4,.focus-item5{
+opacity:0;
+}
+.focus-container ul{
+margin-left:46%;
+}
+/*设置轮播焦点的位置*/
+.focus-container{
+bottom:2%;
+}
+/*设置当前图片焦点的颜色*/
+.focus-item{
+background: #51b1d9;
+}
+/*设置动画，请根据实际需要修改秒数*/
+.slider-item,.focus-item{
+animation-duration: 20s;
+}
+.slider-item1,.focus-item1{
+animation-delay: -1s;
+}
+.slider-item2,.focus-item2{
+animation-delay: 3s;
+}
+.slider-item3,.focus-item3{
+animation-delay: 7s;
+}
+.slider-item4,.focus-item4{
+animation-delay: 11s;
+}
+.slider-item5,.focus-item5{
+animation-delay: 15s;
+}
+@keyframes fade{
+0%{
+opacity:0;
+z-index:2;
+}
+5%{
+opacity:1;
+z-index: 1;
+}
+20%{
+opacity:1;
+z-index:1;
+}
+25%{
+opacity:0;
+z-index:0;
+}
+100%{
+opacity:0;
+z-index:0;
+}
+}
+/*设置背景，响应式请利用媒体查询根据断点修改路径*/
+.slider-item1{
+background-image:url(../static/70100101.jpg);
+}
+.slider-item2{
+background-image:url(../static/70000001.jpg);
+}
+.slider-item3{
+background-image:url(../static/70000002.jpg);
+}
+.slider-item4{
+background-image:url(../static/70000003.jpg);
+}
+.slider-item5{
+background-image:url(../static/70100102.jpg);
+}
+/*设置图片的高度，请根据具体需要修改百分比，响应式及时修改此值*/
+.slider,.slider-item{
+padding-bottom:40%;
+}
+
+
+
+
+/* 分割线 */
+.link-top {
+            width: 96%;
+            height: 1px;
+            border-top: solid #c1c1c1 1px;
+            margin-top: 20px;
+            margin-left: 2%;
+            margin-right: 2%;
+        }
+
+/* 小标题样式 */
+.title1{
+	text-align:left;
+	color:#FF9900;
+	-webkit-transition:all 1.5s ease;
+	transition:all 1.5s ease;
+}
+.title1:hover {
+	color:#f14b4b;
+	-webkit-animation:Glow 1.5s ease infinite alternate;
+	animation:Glow 1.5s ease infinite alternate;
+}
+@-webkit-keyframes Glow {
+	from {
+	text-shadow:0 0 10px #fff,0 0 20px #fff,0 0 30px #fff,0 0 40px #FF9900,0 0 70px #FF9900,0 0 80px #FF9900,0 0 100px #FF9900,0 0 150px #FF9900;
+}
+to {
+	text-shadow:0 0 5px #fff,0 0 10px #fff,0 0 15px #fff,0 0 20px #f14b4b,0 0 35px #FF9900,0 0 40px #FF9900,0 0 50px #FF9900,0 0 75px #FF9900;
+}
+}@keyframes Glow {
+	from {
+	text-shadow:0 0 10px #fff,0 0 20px #fff,0 0 30px #fff,0 0 40px #FF9900,0 0 70px #FF9900,0 0 80px #FF9900,0 0 100px #FF9900,0 0 150px #FF9900;
+}
+to {
+	text-shadow:0 0 5px #fff,0 0 10px #fff,0 0 15px #fff,0 0 20px #f14b4b,0 0 35px #FF9900,0 0 40px #FF9900,0 0 50px #FF9900,0 0 75px #FF9900;
+}
+}
+
+ /* 主区域 */
+.main1 {
     background-color: white;
-    padding: 20px;
+    padding: 5px;
+    marin:10px;
+    width: 98%;
+    margin-left: 1%;
+    margin-bottom: 10px;
+
 }
+
 /* 列容器 */
 .row {
     display: -ms-flexbox; /* IE10 弹性布局*/
@@ -73,23 +339,30 @@ body {
     flex-wrap: wrap;
 }
 
+/* 图片背景 */
 .fakeimg2 {
-    background-color: #aaa;
-    width: 192px;
-    height:210px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    background-color: #e3e1e1;
+    padding-top: 10px;
+    padding-bottom: 20px;
     float: left;
     display:inline;
-    margin:5px;
+    margin:1%;
+    width:180px;
+    height:280px;
 }
-.jia a{
-    vertical-align: middle;
+
+.goods a:hover img {
+    filter:alpha(Opacity=70);
+    -moz-opacity:0.7;
+    opacity: 0.7;
 }
-.jia a:hover img {
-    filter:alpha(Opacity=80);
-    -moz-opacity:0.8;
-    opacity: 0.8;
+
+.font{
+    font-size: 14px;
+    font-family:'Arial';
+    margin: 5px;
+    height:85px;
+    color: #363636;
 }
 
 /* 底部 */
@@ -97,8 +370,8 @@ body {
     height:80px;
     padding: 5px;
     text-align: center;
-    color:white;
-    background: #99CCFF;
+    color:#6699CC;
+    margin-top: 5px;
 }
 
 
@@ -120,130 +393,232 @@ body {
 </style>
 </head>
 
-<body>
+<body >
+<div class="background">
 
 <div class="header">
-  <h1>极速生活 无限可能</h1>
-  <p>无限速团队制作</p>
+  <div style="font-size: 40px" class="slideShine">极速生活 无限可能</div>
+  <img src="../static/logo.png" align="center" style="height: 100px;width: 100px">
+
+ <div class="navbar" >
+   <input type="text" name="search" placeholder="搜索商品">
+  <a href="http://127.0.0.1:5000/register" class="right" style="float: right">登录/注册</a>
+
+
+</form>
 </div>
 
-<div class="navbar">
-  <a href="#">服装</a>
-  <a href="#">食品</a>
-  <a href="#">家具</a>
-  <a href="http://127.0.0.1:5000/register" class="right">登录/注册</a>
 </div>
 
-<div class="row">
-    <div class="main">
-      <h2 style="color: #f65f5f">-正在热卖-</h2>
-		<div class="fakeimg2"  >
-            <div align="center"><img src="../static/cloth1.PNG" width=160px height=150px ></div>
-            <center>多色裤子
-                <div class="jia">销售价：￥98
-                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
-            </center>
+
+</div>
+
+<div class="row" style="background-color: #f6f6f6">
+
+    <section class="slider-contaner">
+<ul class="slider">
+<li class="slider-item slider-item1"></li>
+<li class="slider-item slider-item2"></li>
+<li class="slider-item slider-item3"></li>
+<li class="slider-item slider-item4"></li>
+<li class="slider-item slider-item5"></li>
+</ul>
+<div class="focus-container">
+<ul class="floatfix">
+<li><div class="focus-item focus-item1"></div></li>
+<li><div class="focus-item focus-item2"></div></li>
+<li><div class="focus-item focus-item3"></div></li>
+<li><div class="focus-item focus-item4"></div></li>
+<li><div class="focus-item focus-item5"></div></li>
+</ul>
+</div>
+</section>
+
+    <div class="link-top"></div>
+    <h2 class="title1" >-正在热卖-</h2>
+    <br>
+    <div class="main1">
+
+       <div class="fakeimg2" >
+            <div align="center" class="goods" ><a href="#">
+                <img src="../static/{{ u[0][0] }}.jpg" width=160px height=150px onclick="sell()"></a></div>
+            <div class="font">{{ u[0][1] }}</div>
+                <center>销售价：￥{{ u[0][2] }}</center>
         </div>
+
 	    <div class="fakeimg2" >
-            <div align="center"><img src="../static/cloth2.PNG" width=160px height=150px ></div>
-            <center>羽绒服
-                <div class="jia">销售价：￥798
-                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
-            </center>
-        </div>
-
-		<div class="fakeimg2" >
-            <div align="center"><img src="../static/cloth3.PNG" width=160px height=150px ></div>
-            <center>个性绿短裤
-                <div class="jia">销售价：￥78
-                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
-            </center>
-        </div>
-
-		<div class="fakeimg2" >
-            <div align="center"><img src="../static/cloth4.PNG" width=160px height=150px ></div>
-            <center>猫猫头T恤
-                <div class="jia">销售价：￥48
-                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
-            </center>
+            <div align="center" class="goods"><a href="#">
+                <img src="../static/{{ u[1][0] }}.jpg" width=160px height=150px onclick="sell()"></a></div>
+            <div class="font">{{ u[1][1] }}</div>
+                <center>销售价：￥{{ u[1][2] }}</center>
         </div>
 
         <div class="fakeimg2" >
-            <div align="center"><img src="../static/home1.PNG" width=160px height=150px ></div>
-            <center>豪华沙发
-                <div class="jia">销售价：￥1998
-                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
-            </center>
+            <div align="center" class="goods"><a href="#">
+                <img src="../static/{{ u[2][0] }}.jpg" width=160px height=150px onclick="sell()"></a></div>
+            <div class="font">{{ u[2][1] }}</div>
+                <center>销售价：￥{{ u[2][2] }}</center>
         </div>
 
         <div class="fakeimg2" >
-            <div align="center"><img src="../static/home2.PNG" width=160px height=150px ></div>
-            <center>简约沙发
-                <div class="jia">销售价：￥998
-                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
-            </center>
+            <div align="center" class="goods"><a href="#">
+                <img src="../static/{{ u[3][0] }}.jpg"  width=160px height=150px onclick="sell()"></a></div>
+             <div class="font">{{ u[3][1] }}</div>
+                <center>销售价：￥{{ u[3][2] }}</center>
         </div>
 
+        <div class="fakeimg2" >
+            <div align="center" class="goods"><a href="#">
+                <img src="../static/{{ u[4][0] }}.jpg"  width=160px height=150px onclick="sell()"></a></div>
+             <div class="font">{{ u[4][1] }}</div>
+                <center>销售价：￥{{ u[4][2] }}</center>
+        </div>
 
-      <br>
-      <br>
-      <br>
-      <h2 style="color: #f14b4b">-当季爆款-</h2>
+        <div class="fakeimg2" >
+            <div align="center" class="goods"><a href="#">
+                <img src="../static/{{ u[5][0] }}.jpg"  width=160px height=150px onclick="sell()"></a></div>
+             <div class="font">{{ u[5][1] }}</div>
+                <center>销售价：￥{{ u[5][2] }}</center>
+        </div>
+
+        <div class="fakeimg2" >
+            <div align="center" class="goods"><a href="#">
+                <img src="../static/{{ u[6][0] }}.jpg"  width=160px height=150px onclick="sell()"></a></div>
+             <div class="font">{{ u[6][1] }}</div>
+                <center>销售价：￥{{ u[6][2] }}</center>
+        </div>
+
+	    <div class="fakeimg2" >
+            <div align="center" class="goods"><a href="#">
+                <img src="../static/{{ u[7][0] }}.jpg"  width=160px height=150px onclick="sell()"></a></div>
+             <div class="font">{{ u[7][1] }}</div>
+                <center>销售价：￥{{ u[7][2] }}</center>
+        </div>
+
+		<div class="fakeimg2" >
+            <div align="center" class="goods"><a href="#">
+                <img src="../static/{{ u[8][0] }}.jpg"  width=160px height=150px onclick="sell()"></a></div>
+             <div class="font">{{ u[8][1] }}</div>
+                <center>销售价：￥{{ u[8][2] }}</center>
+        </div>
+
+		<div class="fakeimg2" >
+            <div align="center" class="goods"><a href="#">
+                <img src="../static/{{ u[9][0] }}.jpg"  width=160px height=150px onclick="sell()"></a></div>
+             <div class="font">{{ u[9][1] }}</div>
+                <center>销售价：￥{{ u[9][2] }}</center>
+        </div>
+
+        <div class="fakeimg2" >
+            <div align="center" class="goods"><a href="#">
+                <img src="../static/{{ u[10][0] }}.jpg"  width=160px height=150px onclick="sell()"></a></div>
+             <div class="font">{{ u[10][1] }}</div>
+                <center>销售价：￥{{ u[10][2] }}</center>
+        </div>
+
+        <div class="fakeimg2" >
+            <div align="center" class="goods"><a href="#">
+                <img src="../static/{{ u[11][0] }}.jpg"  width=160px height=150px onclick="sell()"></a></div>
+             <div class="font">{{ u[11][1] }}</div>
+                <center>销售价：￥{{ u[11][2] }}</center>
+        </div>
+
+    </div>
+    <div class="link-top"></div>
+<h2  class="title1">-当季爆款-</h2>
+    <div class="main1">
 
       	<div class="fakeimg2" >
-            <div align="center"><img src="../static/food1.PNG" width=160px height=150px ></div>
-            <center>芒果干
-                <div class="jia">销售价：￥58
-                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
-            </center>
+            <div align="center" class="goods"><a href="#">
+                <img src="../static/{{ u2[0][0] }}.jpg" width=160px height=150px onclick="sell()"></a></div>
+            <div class="font">{{ u2[0][1] }}</div>
+                <center>销售价：￥{{ u2[0][2] }}</center>
         </div>
 
-	    <div class="fakeimg2">
-            <div align="center"><img src="../static/food2.PNG" width=160px height=150px ></div>
-            <center>无糖饼干
-                <div class="jia">销售价：￥9.8
-                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
-            </center>
-        </div>
-
-		<div class="fakeimg2" >
-            <div align="center"><img src="../static/food3.PNG" width=160px height=150px ></div>
-            <center>高钙鱼松小虾虾
-                <div class="jia">销售价：￥40.8
-                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
-            </center>
+		<div class="fakeimg2">
+            <div align="center" class="goods"><a href="#">
+                <img src="../static/{{ u2[1][0] }}.jpg" width=160px height=150px onclick="sell()"></a></div>
+           <div class="font">{{ u2[1][1] }}</div>
+                 <center>销售价：￥{{ u2[1][2] }}</center>
         </div>
 
 		<div class="fakeimg2" >
-            <div align="center"><img src="../static/food4.PNG" width=160px height=150px ></div>
-            <center>曲奇饼
-                <div class="jia">销售价：￥98
-                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
-            </center>
+            <div align="center" class="goods"><a href="#">
+                <img src="../static/{{ u2[2][0] }}.jpg" width=160px height=150px onclick="sell()"></a></div>
+            <div class="font">{{ u2[2][1] }}</div>
+                <center>销售价：￥{{ u2[2][2] }}</center>
+        </div>
+
+		<div class="fakeimg2" >
+            <div align="center" class="goods"><a href="#">
+                <img src="../static/{{ u2[3][0] }}.jpg" width=160px height=150px onclick="sell()"></a></div>
+            <div class="font">{{ u2[3][1] }}</div>
+                <center>销售价：￥{{ u2[3][2] }}</center>
         </div>
 
         <div class="fakeimg2" >
-            <div align="center"><img src="../static/home3.PNG" width=160px height=150px ></div>
-            <center>普通沙发
-                <div class="jia">销售价：￥1598
-                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
-            </center>
+            <div align="center" class="goods"><a href="#">
+                <img src="../static/{{ u2[4][0] }}.jpg" width=160px height=150px onclick="sell()"></a></div>
+            <div class="font">{{ u2[4][1] }}</div>
+                <center>销售价：￥{{ u2[4][2] }}</center>
+        </div>
+
+         <div class="fakeimg2" >
+            <div align="center" class="goods"><a href="#">
+                <img src="../static/{{ u2[5][0] }}.jpg" width=160px height=150px onclick="sell()"></a></div>
+            <div class="font">{{ u2[5][1] }}</div>
+                <center>销售价：￥{{ u2[5][2] }}</center>
+        </div>
+
+	    <div class="fakeimg2" >
+            <div align="center" class="goods"><a href="#">
+                <img src="../static/{{ u2[6][0] }}.jpg" width=160px height=150px onclick="sell()"></a></div>
+            <div class="font">{{ u2[6][1] }}</div>
+                <center>销售价：￥{{ u2[6][2] }}</center>
+        </div>
+
+		<div class="fakeimg2" >
+            <div align="center" class="goods"><a href="#">
+                <img src="../static/{{ u2[7][0] }}.jpg" width=160px height=150px onclick="sell()"></a></div>
+            <div class="font">{{ u2[7][1] }}</div>
+                <center>销售价：￥{{ u2[7][2] }}</center>
+        </div>
+
+		<div class="fakeimg2" >
+            <div align="center" class="goods"><a href="#">
+                <img src="../static/{{ u2[8][0] }}.jpg" width=160px height=150px onclick="sell()"></a></div>
+            <div class="font">{{ u2[8][1] }}</div>
+                <center>销售价：￥{{ u2[8][2] }}</center>
         </div>
 
         <div class="fakeimg2" >
-            <div align="center"><img src="../static/home4.PNG" width=160px height=150px ></div>
-            <center>至尊沙发
-                <div class="jia">销售价：￥19998
-                  <a href="#"><img src="../static/jia.PNG" width=25px height=25px onclick="sell()"></a></div>
-            </center>
+            <div align="center" class="goods"><a href="#">
+                <img src="../static/{{ u2[9][0] }}.jpg" width=160px height=150px onclick="sell()"></a></div>
+            <div class="font">{{ u2[9][1] }}</div>
+                <center>销售价：￥{{ u2[9][2] }}</center>
+        </div>
+
+        <div class="fakeimg2" >
+            <div align="center" class="goods"><a href="#">
+                <img src="../static/{{ u2[10][0] }}.jpg" width=160px height=150px onclick="sell()"></a></div>
+            <div class="font">{{ u2[10][1] }}</div>
+                <center>销售价：￥{{ u2[10][2] }}</center>
+        </div>
+
+        <div class="fakeimg2" >
+            <div align="center" class="goods"><a href="#">
+                <img src="../static/{{ u2[11][0] }}.jpg" width=160px height=150px onclick="sell()"></a></div>
+            <div class="font">{{ u2[11][1] }}</div>
+                <center>销售价：￥{{ u2[11][2] }}</center>
         </div>
     </div>
   </div>
 
 </div>
+<div class="background">
     <div class="footer">
-    <h2>广告位招租</h2>
+    <h2>-广告位招租-</h2>
     </div>
-
+</div>
 </body>
 </html>
