@@ -11,14 +11,7 @@ def get(id,idlist,goodslist,actionlist):
     buy1 = list(set(buy))
     return buy1
 
-def max(rule):
-    max = 0
-    for i in rule:
-        if max < len(i[0]):
-            max = len(i[0])
-    return max
-
-def PowerSetsBinary(buy,max):
+def PowerSetsBinary(buy):
     results = []
     N = len(buy)
     for i in range(2 ** N):  # 子集个数，每循环一次一个子集
@@ -27,17 +20,43 @@ def PowerSetsBinary(buy,max):
             if (i >> j) % 2:
                 if buy[j] != []:
                     combo.append(buy[j])
-        if len(combo) <= max:
-            results.append(combo)
     del(results[0])
     return results
 
-def search(results,rule):
+def sql_data():
+    sql_data = []
+    db = pymysql.connect(host='wxs.chinaeast.cloudapp.chinacloudapi.cn', user='root', password='Wxs20200730', port=3306,
+                         db='demo')  # 数据库
+    cursor = db.cursor()  # 游标
+    sql1 = "SELECT freqSet_conseq FROM behavior_analysis_aprior "
+    cursor.execute(sql1)
+    freqlist = []
+    allfreq = cursor.fetchall()  # 取出数据
+    for s in allfreq:
+        freqlist.append(s[0])
+    sql2 = "SELECT conseq FROM behavior_analysis_aprior "
+    cursor.execute(sql2)
+    conslist = []
+    allcons = cursor.fetchall()  # 取出数据
+    for s in allcons:
+        conslist.append(s[0])
+    sql3 = "SELECT conf FROM behavior_analysis_aprior "
+    cursor.execute(sql3)
+    conflist = []
+    allconf = cursor.fetchall()  # 取出数据
+    for s in allconf:
+        conflist.append(s[0])
+    db.commit()
+    db.close()
+    cursor.close()  # 关闭
+    return freqlist, conslist, conflist
+
+def search(results, freqlist, conslist):
     result = []
-    for i in rule:
+    for i in range(len(freqlist)):
         for j in results:
-            if i[0] == j:
-                result.append(i[1])
+            if freqlist[i] == j:
+                result.append(conslist[i])
     result1 = [y for x in result for y in x]
     result2 = list(set(result1))
     return result2
@@ -70,8 +89,6 @@ def save_sql(result,id):
 
 if __name__ == '__main__':
     idlist, goodslist, actionlist = reader.search()
-    dataSet = reader.data_handle(idlist, goodslist)
-    L, supportData = apriori.apriori(dataSet, minSupport=0.2)
-    rule = apriori.gen_rule(L, supportData, minConf=0.7)
-    print(search(PowerSetsBinary(get(1,idlist,goodslist,actionlist),max(rule)),rule))
+    freqlist, conslist,_ = sql_data()
+    print(search(PowerSetsBinary(get(1,idlist,goodslist,actionlist)), freqlist, conslist))
     print(buy(1,idlist,goodslist,actionlist))
