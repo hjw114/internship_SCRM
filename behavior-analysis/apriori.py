@@ -1,7 +1,11 @@
+'''
+本模块实现apriori关联性分析
+author：胡觉文
+'''
 from numpy import *
 import reader
 
-def createC1(dataSet):
+def createC1(dataSet):#建立数据字典
     C1 = []
     for transaction in dataSet:
         for item in transaction:
@@ -11,7 +15,7 @@ def createC1(dataSet):
     # 映射为frozenset唯一性的，可使用其构造字典
     return list(map(frozenset, C1))
 
-def scanD(D, Ck, minSupport):# 从候选K项集到频繁K项集（支持度计算）
+def scanD(D, Ck, minSupport):#从候选K项集到频繁K项集（支持度计算）
     ssCnt = {}
     for tid in D:
         for can in Ck:
@@ -30,7 +34,7 @@ def scanD(D, Ck, minSupport):# 从候选K项集到频繁K项集（支持度计�
             supportData[key] = support
     return retList, supportData
 
-def calSupport(D, Ck, min_support):
+def calSupport(D, Ck, min_support):#数据寻找所有候选集（支持度计算）
     dict_sup = {}
     for i in D:
         for j in Ck:
@@ -49,7 +53,7 @@ def calSupport(D, Ck, min_support):
             supportData[i] = temp_sup  # 此处可设置返回全部的支持度数据（或者频繁项集的支持度数据）
     return relist, supportData
 
-def aprioriGen(Lk, k):  # 创建候选K项集 ##LK为频繁K项集
+def aprioriGen(Lk, k):  #创建候选K项集 ##LK为频繁K项集
     retList = []
     lenLk = len(Lk)
     for i in range(lenLk):
@@ -63,24 +67,22 @@ def aprioriGen(Lk, k):  # 创建候选K项集 ##LK为频繁K项集
                 a = Lk[i] | Lk[j]  # a为frozenset()集合
                 a1 = list(a)
                 b = []
-                # 遍历取出每一个元素，转换为set，依次从a1中剔除该元素，并加入到b中
-                for q in range(len(a1)):
+                for q in range(len(a1)):# 遍历取出每一个元素，转换为set，依次从a1中剔除该元素，并加入到b中
                     t = [a1[q]]
                     tt = frozenset(set(a1) - set(t))
                     b.append(tt)
                 t = 0
                 for w in b:
-                    # 当b（即所有k-1项子集）都是Lk（频繁的）的子集，则保留，否则删除。
-                    if w in Lk:
+                    if w in Lk:# 当b（即所有k-1项子集）都是Lk（频繁的）的子集，则保留，否则删除。
                         t += 1
                 if t == len(b):
                     retList.append(b[0] | b[1])
     return retList
 
-def apriori(dataSet, minSupport=0.2):
+def apriori(dataSet, minSupport=0.2):#apriori算法
     n=0
     C1 = createC1(dataSet)
-    D = list(map(set, dataSet))  # 使用list()转换为列表
+    D = list(map(set, dataSet))  #使用list()转换为列表
     L1, supportData = calSupport(D, C1, minSupport)
     L = [L1]  # 加列表框，使得1项集为一个单独元素
     k = 2
@@ -88,7 +90,7 @@ def apriori(dataSet, minSupport=0.2):
         n=n+1
         print(n)
         Ck = aprioriGen(L[k - 2], k)
-        Lk, supK = scanD(D, Ck, minSupport)  # scan DB to get Lk
+        Lk, supK = scanD(D, Ck, minSupport)  #scan DB to get Lk
         supportData.update(supK)
         L.append(Lk)  # L最后一个值为空集
         k += 1
@@ -96,7 +98,7 @@ def apriori(dataSet, minSupport=0.2):
     del L[-1]  # 删除最后一个空集
     return L, supportData  # L为频繁项集，为一个列表，1，2，3项集分别为一个元素。
 
-def getSubset(fromList, toList):# 生成集合的所有子集
+def getSubset(fromList, toList):#生成集合的所有子集
     for i in range(len(fromList)):
         t = [fromList[i]]
         tt = frozenset(set(fromList) - set(t))
@@ -106,7 +108,7 @@ def getSubset(fromList, toList):# 生成集合的所有子集
             if len(tt) > 1:
                 getSubset(tt, toList)
 
-def calcConf(freqSet, H, supportData, ruleList, minConf=0.7):
+def calcConf(freqSet, H, supportData, ruleList, minConf=0.7):#辅助规则计算
     for conseq in H:
         conf = supportData[freqSet] / supportData[freqSet - conseq]  # 计算置信度
         # 提升度lift计算lift = p(a & b) / p(a)*p(b)

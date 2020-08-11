@@ -1,17 +1,20 @@
+'''
+本模块的作用是通过行为分析数据库得出具体用户行为关联性
+author：胡觉文
+'''
 import reader
-import apriori
 import pymysql
 
-def get(id,idlist,goodslist,actionlist):
+def get(id,idlist,goodslist,actionlist):#获取用户行为
     buy = []
     for s in range(len(idlist)):
         if idlist[s] == id:
             if actionlist[s] == 2:
                 buy.append(goodslist[s])
-    buy1 = list(set(buy))
+    buy1 = list(set(buy))#去重
     return buy1
 
-def PowerSetsBinary(buy):
+def PowerSetsBinary(buy):#求出用户行为子集
     results = []
     N = len(buy)
     for i in range(2 ** N):  # 子集个数，每循环一次一个子集
@@ -23,8 +26,7 @@ def PowerSetsBinary(buy):
     del(results[0])
     return results
 
-def sql_data():
-    sql_data = []
+def sql_data():#取出行为数据库中用户行为
     db = pymysql.connect(host='wxs.chinaeast.cloudapp.chinacloudapi.cn', user='root', password='Wxs20200730', port=3306,
                          db='demo')  # 数据库
     cursor = db.cursor()  # 游标
@@ -51,25 +53,26 @@ def sql_data():
     cursor.close()  # 关闭
     return freqlist, conslist, conflist
 
-def search(results, freqlist, conslist):
+def search(buy,results, freqlist, conslist):#寻找对应行为
     result = []
     for i in range(len(freqlist)):
         for j in results:
             if freqlist[i] == j:
-                result.append(conslist[i])
-    result1 = [y for x in result for y in x]
-    result2 = list(set(result1))
+                if conslist[i] not in buy:#判断是否对应行为，是否和已有行为重复
+                    result.append(conslist[i])
+    result1 = [y for x in result for y in x]#一维展开
+    result2 = list(set(result1))#去重
     return result2
 
-def buy(id,idlist,goodslist,actionlist):
+def buy(id,idlist,goodslist,actionlist):#分析最大购买种类
     buy = []
     res = []
     result = {}
-    for s in range(len(idlist)):
+    for s in range(len(idlist)):#对应数据
         if idlist[s] == id:
             if actionlist[s] == 1:
                 buy.append(goodslist[s])
-    for s in buy:
+    for s in buy:#判断成字典
         if s in res:
             result[s] += 1
         else:
@@ -77,18 +80,8 @@ def buy(id,idlist,goodslist,actionlist):
             res.append(s)
     return result
 
-def save_sql(result,id):
-    db = pymysql.connect(host='wxs.chinaeast.cloudapp.chinacloudapi.cn', user='root', password='Wxs20200730', port=3306,
-                         db='demo')  # 数据库
-    cursor = db.cursor()  # 游标
-    sql = "update user_id set want_to_buy = %s where id = %s"
-    cursor.execute(sql,[str(result),str(id)])
-    db.commit()
-    db.close()
-    cursor.close()  # 关闭
-
 if __name__ == '__main__':
     idlist, goodslist, actionlist = reader.search()
     freqlist, conslist,_ = sql_data()
-    print(search(PowerSetsBinary(get(1,idlist,goodslist,actionlist)), freqlist, conslist))
+    print(search(get(1,idlist,goodslist,actionlist), PowerSetsBinary(get(1,idlist,goodslist,actionlist)), freqlist, conslist))
     print(buy(1,idlist,goodslist,actionlist))
