@@ -1,6 +1,6 @@
 import cv2
 
-def judge():
+def judge(video_id):
     jud=0
     num=0
     con=0
@@ -9,7 +9,7 @@ def judge():
     recognizer.read(r'D:\internship_SCRM\face\model\trainer.yml')#读入之前训练好的模型
     faceCascade = cv2.CascadeClassifier(
         r'F:\Anaconda3\envs\openvino\Lib\site-packages\cv2\data\haarcascade_frontalface_default.xml')#调用人脸分类器
-    cam = cv2.VideoCapture(0)#调用摄像头
+    cam = cv2.VideoCapture(r"D:\internship_SCRM\face\face_video\%s.mp3"%(video_id))#调用摄像头
     minW = 0.1 * cam.get(3)
     minH = 0.1 * cam.get(4)
     while True:
@@ -50,4 +50,4 @@ def judge():
         return -1
 
 if __name__ == '__main__':
-    judge()
+    judge(0)
