@@ -1,21 +1,24 @@
-import pandas as pd
+'''
+本模块的主要功能为分析季节性和热点商品
+author：胡觉文
+'''
 import pymysql
 import reader
 
-def analysis_hot(goodslist,timelist):
+def analysis(goodslist,timelist):#分析热点和季节性商品
     thing = []
     spring = []
     summer = []
     autumn = []
     winter = []
     data = [{},{},{},{},{}]
-    for i in goodslist:
+    for i in goodslist:#分析热点商品
         if i in thing:
             data[0][i] += 1
         else:
             data[0][i] = 1
             thing.append(i)
-    for s in range(len(goodslist)):
+    for s in range(len(goodslist)):#分析季节性商品
         if (timelist[s] == "03" or timelist[s] == "04" or timelist[s] == "05"):
             if goodslist[s] in spring:
                 data[1][goodslist[s]] += 1
@@ -42,7 +45,7 @@ def analysis_hot(goodslist,timelist):
                 winter.append(goodslist[s])
     return data
 
-def save_sql(dict):
+def save_sql(dict):#存入数据库
     db = pymysql.connect(host='wxs.chinaeast.cloudapp.chinacloudapi.cn', user='root', password='Wxs20200730', port=3306,
                          db='demo')  # 数据库
     cursor = db.cursor()  # 游标
@@ -56,6 +59,6 @@ def save_sql(dict):
 
 if __name__ == '__main__':
     goodslist, timelist = reader.search()
-    dict = analysis_hot(goodslist,timelist)
+    dict = analysis(goodslist,timelist)
     print(dict)
     save_sql(dict)
