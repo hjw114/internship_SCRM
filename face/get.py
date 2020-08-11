@@ -1,8 +1,12 @@
+'''
+本模块的功能为获取用户灰度化头像图片
+author:胡觉文
+'''
 import cv2
 import sql_data
 
-def get(face_id):
-    cap = cv2.VideoCapture(0)  # 调用笔记本内置摄像头，参数为0，如果有其他的摄像头可以调整参数为1,2
+def get(video_id,face_id):#获取用户灰度化头像图片
+    cap = cv2.VideoCapture(r"D:\internship_SCRM\face\face_video\%s.mp3"%(video_id))  # 调用笔记本内置摄像头，参数为0，如果有其他的摄像头可以调整参数为1,2
     face_detector = cv2.CascadeClassifier(
         r'F:\Anaconda3\envs\openvino\Lib\site-packages\cv2\data\haarcascade_frontalface_default.xml')  # 调用人脸分类器
     count = 0  # sampleNum用来计数样本数目
@@ -33,4 +37,4 @@ def get(face_id):
 if __name__ == '__main__':
     id = sql_data.serach()
     sql_data.add(id[-1] + 1)
-    get(1)
+    get(0,0)
