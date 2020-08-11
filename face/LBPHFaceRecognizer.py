@@ -1,9 +1,12 @@
+'''
+本模块的功能为训练人脸库
+author:胡觉文
+'''
 import os
 import cv2
 import numpy as np
 from PIL import Image
 
-#注意图片的命名格式为User.id.sampleNum
 def get_images_and_labels(path,detector):#创建一个函数，用于从数据集文件夹中获取训练图片,并获取id
     image_paths = [os.path.join(path,f) for f in os.listdir(path)]
     face_samples = []
@@ -20,7 +23,7 @@ def get_images_and_labels(path,detector):#创建一个函数，用于从数据�
             ids.append(id)
     return face_samples,ids
 
-def train(path,detector):
+def train(path,detector):#训练模型
     recog = cv2.face.LBPHFaceRecognizer_create()  # 初始化识别的方法
     print('Training...')
     faces, ids = get_images_and_labels(path,detector)  # 训练模型

@@ -1,3 +1,7 @@
+'''
+本模块的功能为写入用户id，查找用户id
+author：胡觉文
+'''
 import pymysql
 
 def add(n):#增加数据

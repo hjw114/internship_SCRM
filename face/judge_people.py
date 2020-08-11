@@ -1,6 +1,10 @@
+'''
+本模块的功能为根据人脸判断用户id
+author:胡觉文
+'''
 import cv2
 
-def judge(video_id):
+def judge(video_id):#判断id
     jud=0
     num=0
     con=0
@@ -14,7 +18,7 @@ def judge(video_id):
     minH = 0.1 * cam.get(4)
     while True:
         ret, img = cam.read()
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)#灰度化
         faces = faceCascade.detectMultiScale(
             gray,
             scaleFactor=1.2,
@@ -28,15 +32,15 @@ def judge(video_id):
                 jud = jud + 1
                 num = num + 1
                 con_r = 100 - confidence
-                if con_r >= 50:
+                if con_r >= 60:#判断用户概率
                     jud = 1
-                if (con_r >= con ):
+                if (con_r >= con ):#最大概率
                     con = con_r
                     id = idnum
             else:
                 jud = jud - 1
                 num=num+1
-        cv2.imshow('image', img)  # 显示图片
+        cv2.imshow('image', img)# 显示图片
         k = cv2.waitKey(1)
         if k == 27:
             break
