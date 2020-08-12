@@ -133,5 +133,6 @@ if __name__ == '__main__':
     idlist,goodslist,_ = reader.search()
     dataSet = reader.data_handle(idlist,goodslist)
     L, supportData = apriori(dataSet, minSupport=0.2)
+    print(L)
     rule = gen_rule(L, supportData, minConf=0.7)
     print(rule)
