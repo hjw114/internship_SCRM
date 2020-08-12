@@ -9,9 +9,9 @@ def get(id,idlist,goodslist,actionlist):#获取用户行为
     buy = []
     for s in range(len(idlist)):
         if idlist[s] == id:
-            if actionlist[s] == 2:
+            if actionlist[s] == 1:
                 buy.append(goodslist[s])
-    buy1 = list(set(buy))#去重
+    buy1 = list(set(buy))#去重)
     return buy1
 
 def PowerSetsBinary(buy):#求出用户行为子集
@@ -23,16 +23,16 @@ def PowerSetsBinary(buy):#求出用户行为子集
             if (i >> j) % 2:
                 if buy[j] != []:
                     combo.append(buy[j])
+        results.append(combo)
     del(results[0])
     return results
 
-def search(buy,results,rule):
+def search(results,rule):
     result = []
     for i in rule:
         for j in results:
             if i[0] == j:
-                if i[1] not in buy:
-                    result.append(i[1])
+                result.append(i[1])
     result1 = [y for x in result for y in x]
     result2 = list(set(result1))
     return result2
@@ -58,5 +58,5 @@ if __name__ == '__main__':
     dataSet = reader.data_handle(idlist, goodslist)
     L, supportData = apriori.apriori(dataSet, minSupport=0.2)
     rule = apriori.gen_rule(L, supportData, minConf=0.7)
-    print(search(get(1, idlist, goodslist, actionlist),PowerSetsBinary(get(1, idlist, goodslist, actionlist)), rule))
+    print(search(PowerSetsBinary(get(1, idlist, goodslist, actionlist)), rule))
     print(buy(1, idlist, goodslist, actionlist))
