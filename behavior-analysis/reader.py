@@ -47,6 +47,7 @@ def data_handle(idlist,goodslist):#数据初步处理对应成列表
     i = 0
     j = 0
     list_data = []
+    list_datas = []
     for s in goodslist:#取出产品类别
         goodslist[j] = int(s/100)
         j = j + 1
@@ -61,7 +62,9 @@ def data_handle(idlist,goodslist):#数据初步处理对应成列表
         else:
             list_data.append([])
             list_data[0].append(goodslist[0])
-    return list_data
+    for m in range(len(list_data)):
+        list_datas.append(list(set(list_data[m])))
+    return list_datas
 
 if __name__ == '__main__':
     #print(data_reader())
