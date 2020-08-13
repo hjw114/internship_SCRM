@@ -1,6 +1,7 @@
 '''
 本模块实现购物行为数据处理储存功能
 authon:胡觉文
+弃用
 '''
 import apriori
 import pandas

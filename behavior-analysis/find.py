@@ -1,6 +1,8 @@
 '''
 本模块的功能为从树中搜寻频繁项集
 author：胡觉文
+直接调用网络创建模块
+辅助（弃用）
 '''
 import fp_growth
 import reader

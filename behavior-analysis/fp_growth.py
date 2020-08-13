@@ -1,6 +1,8 @@
 '''
 本模块的功能为创建FP_growth树
 aythor：胡觉文
+直接调用网络创建模块
+辅助（弃用）
 '''
 import reader
 
