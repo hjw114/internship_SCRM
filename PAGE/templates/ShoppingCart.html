@@ -3,6 +3,7 @@
 <head>
 	<title>购物车</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 * {
     box-sizing: border-box;
@@ -17,18 +18,16 @@ body {
 /* 背景设置 */
 .background{
     margin:0px;
-    background: url(../static/5.jpg) no-repeat;
+    background: url(../static/webp.webp) no-repeat;
     background-size:100% 100%;
     background-attachment:fixed;
 }
-
-
 /* 标题 */
 .header {
-    padding-top: 30px;
+    padding-top: 130px;
     text-align: center;
     width: 100%;
-    color: #6699CC;
+    color: white;
 }
 
 /* 标题字体加大 */
@@ -38,7 +37,7 @@ body {
 
 /* 标题字体样式 */
 .slideShine{
-     background:#336699 -webkit-linear-gradient(left, #009999,#66CCCC 50%, #ffff00 90%,#CCFFFF) no-repeat 0 0;
+     background:white -webkit-linear-gradient(left, #009999,#66CCCC 50%, #ffff00 90%,#CCFFFF) no-repeat 0 0;
      background-size:20% 100%;
      -webkit-background-clip: text;
      -webkit-text-fill-color: transparent;
@@ -65,20 +64,16 @@ body {
 
 /* 导航，内容溢出元素框时隐藏 */
 .navbar {
-    font-weight: bolder;
-    background:#000;
+    margin-top: 130px;
+    font-family: 'Microsoft YaHei UI Light';
     overflow: hidden;
-    alpha(Opacity=4);
-    -moz-opacity:0.4;
-    opacity: 0.4;
 }
-
 /* 导航栏样式 */
 .navbar a {
-    font-size: 18px;
-    font-weight: bold;
+    font-weight: lighter;
+    font-size: 15px;
    cursor: pointer;
-    color: #fae063;
+    color: white;
   position: relative;
   padding: 0.5em 1em;
    z-index: 1;
@@ -97,7 +92,7 @@ body {
   width: 1em;
   height: 1em;
   border-radius: 50%;
-  background-color: #fae063;
+  background-color: white;
   transform-origin: center;
   transform: translate3d(-40%, -40%, 0) scale(0, 0);
   transition: transform 0.45s ease-in-out;
@@ -119,6 +114,7 @@ body {
 
 /* 主区域 */
 .main1 {
+    border-radius:4px;
     background-color: white;
     padding: 5px;
     marin:10px;
@@ -146,14 +142,73 @@ body {
     color:white;
 }
 
+/* 表格第一行 */
+.td1 {
+    border-width: 2px;
+    border-style: solid;
+    border-color: white;
+    color: white;
+    background-color:rgb(81, 130, 187);
+}
+/* 表格其他行 */
+.td2{
+    border-width: 2px;
+    border-style: solid;
+    border-color: white;
+    color: #000;
+    background-color: rgb(202, 227, 253);
+}
+
+.fakeimg2 {
+    border:1px solid #e3e1e1;
+    width: 19%;
+    height:310px;
+    padding: 5px;
+    float: left;
+    display:inline;
+    margin:5px;
+}
+
+.goods a:hover img {
+    filter:alpha(Opacity=70);
+    -moz-opacity:0.7;
+    opacity: 0.7;
+}
+.font{
+    font-size: 13px;
+    font-family:'Arial';
+    margin: 5px;
+    height:82px;
+    color: #363636;
+}
+/* 分割线 */
+.link-top {
+            width: 96%;
+            height: 1px;
+            border-top: solid #c1c1c1 1px;
+            margin-top: 20px;
+            margin-left: 2%;
+            margin-right: 2%;
+        }
+
+.bottom {
+    border-radius:4px;
+    background-color: white;
+    padding: 5px;
+    marin:10px;
+    width: 98%;
+    margin-left: 1%;
+    margin-bottom: 10px;
+}
 
 /* 底部 */
 .footer {
-    height:80px;
+    font-family: 'Microsoft YaHei UI Light';
+    font-size: 13px;
+    color: #6c6c6c;
     padding: 5px;
     text-align: center;
-    color:#6699CC;
-    margin-top: 5px;
+    border-top: solid #adadad 1px;
 }
 
 /* 列容器 */
@@ -178,56 +233,6 @@ body {
         width: 100%;
     }
 }
-/* 表格第一行 */
-.td1 {
-    border-width: 2px;
-    border-style: solid;
-    border-color: white;
-    color: white;
-    background-color:rgb(81, 130, 187);
-}
-/* 表格其他行 */
-.td2{
-    border-width: 2px;
-    border-style: solid;
-    border-color: white;
-    color: #000;
-    background-color: rgb(202, 227, 253);
-}
-
-.fakeimg2 {
-    background-color: #e3e1e1;
-    width: 15%;
-    height:280px;
-    padding: 5px;
-    float: left;
-    display:inline;
-    margin:3px;
-}
-
-.goods a:hover img {
-    filter:alpha(Opacity=70);
-    -moz-opacity:0.7;
-    opacity: 0.7;
-}
-.font{
-    font-size: 14px;
-    font-family:'Arial';
-    margin: 5px;
-    height:85px;
-    color: #363636;
-}
-    /* 分割线 */
-.link-top {
-            width: 96%;
-            height: 1px;
-            border-top: solid #c1c1c1 1px;
-            margin-top: 40px;
-            margin-left: 2%;
-            margin-right: 2%;
-            margin-bottom: 40px;
-        }
-
 </style>
 <script>
 	window.onload = function(){
@@ -337,26 +342,34 @@ body {
      oCart.bind();}
 
 </script>
-    <script src="../static/js/jquery-3.4.1.min.js"></script>
+<script src="../static/js/jquery-3.4.1.min.js"></script>
+
 </head>
 
-<body onunload="ha();">
+<body onunload="test()" >
+<div class="row" >
+    <img src="../static/logo.png"
+         style="height: 40px;width: 120px;vertical-align:middle;margin-left: 6%">
+    <div style="margin-left: 62%;margin-top:14px;font-family: 'Microsoft YaHei UI Light';font-size: 13px;color: #6d6d6d">
+        联系我们&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;加入我们&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;意见反馈</div>
+</div>
 <div class="background">
-
-    <div class="header">
-    <div style="font-size: 40px" class="slideShine">极速生活 无限可能</div>
-    <img src="../static/logo.png" align="center" style="height: 100px;width: 100px">
+<div class="header">
+    <div class="link-top" style="width: 25%;margin-left: 37%;margin-bottom: 10px"></div>
+  <div style="font-size: 50px;font-family: 'Microsoft YaHei UI Light';
+  font-weight:lighter;letter-spacing: 20px" class="slideShine" >极速生活<br>无限可能</div>
+    <div class="link-top" style="width: 25%;margin-left: 37%;margin-bottom: 10px"></div>
 
     <div class="navbar">
-    <a href="http://127.0.0.1:5000/homepage_people" style="float: left">返回首页</a>
-    <a href="http://127.0.0.1:5000/Personal_homepage" style="float: right">个人中心</a>
+    <a href="/homepage_people" style="float: left">返回首页</a>
+    <a href="/Personal_homepage" style="float: right">个人中心</a>
 </div>
 </div>
 
 </div>
 
 <div class="row" style="background-color: #f6f6f6">
-<div class="link-top"></div>
+<div class="link-top" style="margin-bottom: 40px;margin-top: 40px"></div>
     <div class="main1">
 <center><h1>购物车</h1></center>
 <h2 style="font-size:20px" align="center">亲亲，快把我带走吧~</h2>
@@ -375,17 +388,30 @@ width="800px" height="200px">
  <tbody>
  {% for goods in u%}
              <tr align="center">
-                 <td class="td2">{{ goods[1]}}</td>
+                 <td class="td2" ><span class="goods_name" >{{ goods[1]}}</span></td>
+
                  <td class="td2" ID= "num" ><span class="jiajie">
                      <input type="button" value="-">
                      <span class="num" >0</span><input type="button" value="+"></span></td>
+
                  <td class="td2"><span>单价：</span><span class="unit">{{ goods[2]}}</span></td>
+
                  <td class="td2" ID="subtal"><span>小计：</span><span class="subtal" >0</span></td>
-                 <td class="td2"><button class="del">删除</button></td>
+
+                 <td class="td2"><button class="del" id={{ goods[0] }}>删除</button></td>
+
+             <script type="text/javascript">
+                  $($("#{{ goods[0] }}").click(function() {
+                              $.ajax({url: "/ajax_delete_shoppingcart",
+                                      type: "post",
+                                      data: {"user_id":"1","goods_id":{{ goods[0] }},"action":"2"},
+                              success:function (datas) {console.log("成功了");
+                                                         console.log(datas)},
+                    error:function () {console.log("失败了")}})}))</script>
              </tr>
               {% endfor %}
              <tr>
-                 <td  colspan="6" class="td2" >
+                 <td  colspan="5" class="td2" >
                      <span>商品一共 <span class="goods_num">0</span> 件;
                          共计花费 <span class="pricetal" ID="total">0</span> 元;
                          其中最贵的商品单价是 <span class="pricest">0</span> 元
@@ -394,55 +420,75 @@ width="800px" height="200px">
              </tr>
  </tbody>
     </table>
+<center>
+<h4 align="center"><a href="/check" class="button">结算</a></h4></center>
+<script type="text/javascript">
+    function  test(){
+        var name=[];
+        for(i=0;i<Object.keys($(".goods_name")).length-2;i++){
+        $(".goods_name").each(function(){
+        name[i]=JSON.stringify($(this).text());
+        i++;
+        })}
 
-<h4 align="center"><a href="http://127.0.0.1:5000/check" class="button">结算</a></h4>
-      <script>
-function ha() {
-    var num=$('#num').text();
-    var subtal=$('#subtal').text();
-    var total=$('#total').text();
-     {% for goods in u%}
-        localStorage.setItem("name","{{ goods[1]}}");
-        localStorage.setItem("unit","{{ goods[2]}}");
+        var num=[];
+        for(j=0;j<Object.keys($(".num")).length-2;i++){
+        $(".num").each(function(){
+            num[j]=$(this).text();
+            j++;})}
+
+        var unit=[];
+        for(k=0;k<Object.keys($(".unit")).length-2;i++){
+        $(".unit").each(function(){
+            unit[k]=$(this).text();
+            k++;})}
+
+        var subtal=[];
+        for(l=0;l<Object.keys($(".subtal")).length-2;i++){
+        $(".subtal").each(function(){
+            subtal[l]=$(this).text();
+            l++;})}
+
+
+        var order=[];
+        for(a=0,b=0;a<40;a=a+4){
+            order[a]=(name[b]);
+            order[a+1]=num[b];
+            order[a+2]=unit[b];
+            order[a+3]=subtal[b];
+            b=b+1;}
+
+
+        localStorage.setItem("name",name);
         localStorage.setItem("num",num);
+        localStorage.setItem("unit",unit);
         localStorage.setItem("subtal",subtal);
-        localStorage.setItem("total",total);
-        {% endfor %}
-}
+        localStorage.setItem("order",order);
+        localStorage.setItem("total",$('#total').text());
+        localStorage.setItem("order",JSON.stringify(order));
+    }
 </script>
 
 </div>
-
-     <div class="link-top"></div>
-    <h2 style="color: #f68686">-根据您的购买历史，我们猜您可能会喜欢以下商品-</h2>
-<div class="main1">
-
-<div class="fakeimg2" >
-          <div align="center" class="goods"><a href="http://127.0.0.1:5000/shoppinglist">
-              <img src="../static/30300002.jpg" width=140px height=150px ></a></div>
-          <div class="font" style="font-size: 13px">民福齐食 雪花南瓜饼 300g 传统糕点 油炸速冻零食点心</div>
-          <center>销售价：￥10</center>
-      </div>
-
-      <div class="fakeimg2"  >
-          <div align="center" class="goods"><a href="#">
-              <img src="../static/{{ u1[1][0] }}.jpg" width=140px height=150px ></a></div>
-          <div class="font"style="font-size: 13px">{{ u1[1][1] }}</div>
-              <center>销售价：￥{{ u1[1][2] }}</center>
-      </div>
-
-      <div class="fakeimg2" >
-          <div align="center" class="goods"><a href="#">
-              <img src="../static/{{ u1[2][0] }}.jpg" width=140px height=150px ></a></div>
-         <div class="font"style="font-size: 13px">{{ u1[2][1] }}</div>
-              <center>销售价：￥{{ u1[2][2] }}</center>
-      </div>
+<div class="link-top" style="margin-bottom: 40px;margin-top: 40px"></div>
+<h2 style="color: #f68686">根据您的购物车，我们猜您可能会喜欢以下商品:</h2>
+<div class="bottom">
+     {% for goods in guestgoods[:8]%}
+       <div class="fakeimg2" >
+            <div align="center" class="goods" ><a href="#">
+                <img src="../static/{{ goods[0] }}.jpg" width=160px height=150px ></a></div>
+            <div class="link-top" ></div>
+           <div class="font">{{ goods[1] }}</div>
+                <center style="margin-top:20px">销售价：￥{{ goods[2] }}</center>
+        </div>
+        {% endfor %}
 </div>
 </div>
-<div class="background">
-    <div class="footer">
-    <h2>-广告位招租-</h2>
+
+<div class="footer" >
+        BJFU 无限速团队&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;广告位招租&nbsp;&nbsp;&nbsp;
 </div>
-</div>
+
+
 </body>
 </html>
