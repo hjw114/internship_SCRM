@@ -3,18 +3,11 @@
 <script src="../static/js/jquery-3.4.1.min.js"></script>
 
 <script>
-    window.onload = function(name){
-if(typeof(Storage)!=="undefined")
-
-{
-    document.getElementById("3").innerHTML= localStorage.getItem("num");
-    document.getElementById("4").innerHTML= localStorage.getItem("subtal");
-    document.getElementById("total").innerHTML= localStorage.getItem("total")+"  RMB";
-}
-else
-{
-  document.getElementById("1").innerHTML="对不起，您的浏览器不支持 web 存储。";
-}}
+    order=JSON.parse(localStorage.getItem("order"))
+    function  ha(){
+        for(i=1;i<100;i++){
+            document.getElementById(i).innerHTML=order[i-1];
+            document.getElementById("total").innerHTML= localStorage.getItem("total")+"  RMB";}}
 </script>
 
 <head>
@@ -27,20 +20,21 @@ else
 }
 body {
     font-family: "Comic Sans MS", cursive, sans-serif;
+    margin: 0;
 }
 /* 背景设置 */
 .background{
     margin:0px;
-    background: url(../static/5.jpg) no-repeat;
+    background: url(../static/webp.webp) no-repeat;
     background-size:100% 100%;
     background-attachment:fixed;
 }
 /* 标题 */
 .header {
-    padding-top: 30px;
+    padding-top: 130px;
     text-align: center;
     width: 100%;
-    color: #6699CC;
+    color: white;
 }
 
 /* 标题字体加大 */
@@ -50,7 +44,7 @@ body {
 
 /* 标题字体样式 */
 .slideShine{
-     background:#336699 -webkit-linear-gradient(left, #009999,#66CCCC 50%, #ffff00 90%,#CCFFFF) no-repeat 0 0;
+     background:white -webkit-linear-gradient(left, #009999,#66CCCC 50%, #ffff00 90%,#CCFFFF) no-repeat 0 0;
      background-size:20% 100%;
      -webkit-background-clip: text;
      -webkit-text-fill-color: transparent;
@@ -77,20 +71,16 @@ body {
 
 /* 导航，内容溢出元素框时隐藏 */
 .navbar {
-    font-weight: bolder;
-    background:#000;
+    margin-top: 130px;
+    font-family: 'Microsoft YaHei UI Light';
     overflow: hidden;
-    alpha(Opacity=4);
-    -moz-opacity:0.4;
-    opacity: 0.4;
 }
-
 /* 导航栏样式 */
 .navbar a {
-    font-size: 18px;
-    font-weight: bold;
+    font-weight: lighter;
+    font-size: 15px;
    cursor: pointer;
-    color: #fae063;
+    color: white;
   position: relative;
   padding: 0.5em 1em;
    z-index: 1;
@@ -109,7 +99,7 @@ body {
   width: 1em;
   height: 1em;
   border-radius: 50%;
-  background-color: #fae063;
+  background-color: white;
   transform-origin: center;
   transform: translate3d(-40%, -40%, 0) scale(0, 0);
   transition: transform 0.45s ease-in-out;
@@ -142,6 +132,7 @@ body {
 
 /* 主区域 */
 .main1 {
+    border-radius:4px;
     background-color: white;
     padding: 5px;
     marin:10px;
@@ -197,13 +188,21 @@ body {
 
     /* 底部 */
 .footer {
-    height:80px;
+    font-family: 'Microsoft YaHei UI Light';
+    font-size: 13px;
+    color: #6c6c6c;
     padding: 5px;
     text-align: center;
-    color:#6699CC;
-    margin-top: 5px;
+    border-top: solid #adadad 1px;
 }
 
+
+/* 响应式布局 - 在屏幕设备宽度尺寸小于 700px 时, 让两栏上下堆叠显示 */
+@media screen and (max-width: 700px) {
+    .row {
+        flex-direction: column;
+    }
+}
 
 /* 响应式布局 - 在屏幕设备宽度尺寸小于 400px 时, 让导航栏目上下堆叠显示 */
 @media screen and (max-width: 400px) {
@@ -216,19 +215,28 @@ body {
 </style>
 </head>
 
-<body>
+<body onload="ha();" onunload="hei ()" >
+<div class="row" >
+    <img src="../static/logo.png"
+         style="height: 40px;width: 120px;vertical-align:middle;margin-left: 6%">
+    <div style="margin-left: 62%;margin-top:14px;font-family: 'Microsoft YaHei UI Light';font-size: 13px;color: #6d6d6d">
+        联系我们&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;加入我们&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;意见反馈</div>
+</div>
+
 <div class="background">
 <div class="header">
-  <div style="font-size: 40px" class="slideShine">极速生活 无限可能</div>
-  <img src="../static/logo.png" align="center" style="height: 100px;width: 100px">
-
+    <div class="link-top" style="width: 25%;margin-left: 37%;margin-bottom: 10px"></div>
+  <div style="font-size: 50px;font-family: 'Microsoft YaHei UI Light';
+  font-weight:lighter;letter-spacing: 20px" class="slideShine" >极速生活<br>无限可能</div>
+    <div class="link-top" style="width: 25%;margin-left: 37%;margin-bottom: 10px"></div>
 <div class="navbar">
-  <a href="http://127.0.0.1:5000/homepage_people" class="right" style="float: left">返回首页</a>
-  <a href="http://127.0.0.1:5000/Shopping_Cart" class="right" style="float: left">购物车</a>
-  <a href="http://127.0.0.1:5000/Personal_homepage" class="right" style="float: right">个人中心</a>
+  <a href="/homepage_people" class="right" style="float: left">返回首页</a>
+  <a href="/Shopping_Cart" class="right" style="float: left">购物车</a>
+  <a href="/Personal_homepage" class="right" style="float: right">个人中心</a>
 </div>
 
 </div>
+
 </div>
 <div class="row" style="background-color: #f6f6f6">
 
@@ -241,17 +249,43 @@ body {
 		cellspacing="15"  align="center" border="1" width="500" cellpadding="0">
 <tr align="center" >
   <td class="td1">商品名称</td>
+  <td class="td1">数量</td>
   <td class="td1">单价</td>
+  <td class="td1">小计</td>
 </tr>
-{% for goods in u%}
 <tr align="center">
-  <td class="td2"><div style="font-size: 17px" >{{ goods[1]}}</div></td>
-  <td class="td2" >{{ goods[2]}}</td>
-  <td class="td2" id="3" style="display: none"></td>
-  <td class="td2" id="4"style="display: none"></td>
-</tr>
-    {% endfor %}
+  <td class="td2"><span style="font-size: 17px"id="1" ></span></td><td class="td2" ><span id="2" class="num"></span></td>
+  <td class="td2" ><span id="3"></span></td>                        <td class="td2" ><span id="4"></span></td></tr>
+<tr align="center">
+  <td class="td2"><span style="font-size: 17px"id="5" ></span></td><td class="td2" ><span id="6" class="num"></span></td>
+  <td class="td2" ><span id="7"></span></td>                        <td class="td2" ><span id="8"></span></td></tr>
+<tr align="center">
+  <td class="td2"><span style="font-size: 17px"id="9" ></span></td><td class="td2" ><span id="10" class="num"></span></td>
+  <td class="td2" ><span id="11"></span></td>                        <td class="td2" ><span id="12"></span></td></tr>
+<tr align="center">
+  <td class="td2"><span style="font-size: 17px"id="13" ></span></td><td class="td2" ><span id="14" class="num"></span></td>
+  <td class="td2" ><span id="15"></span></td>                        <td class="td2" ><span id="16"></span></td></tr>
+<tr align="center">
+  <td class="td2"><span style="font-size: 17px"id="17" ></span></td><td class="td2" ><span id="18" class="num"></span></td>
+  <td class="td2" ><span id="19"></span></td>                        <td class="td2" ><span id="20"></span></td></tr>
+<tr align="center">
+  <td class="td2"><span style="font-size: 17px"id="21" ></span></td><td class="td2" ><span id="22" class="num"></span></td>
+  <td class="td2" ><span id="23"></span></td>                        <td class="td2" ><span id="24"></span></td></tr>
+<tr align="center">
+  <td class="td2"><span style="font-size: 17px"id="25" ></span></td><td class="td2" ><span id="26" class="num"></span></td>
+  <td class="td2" ><span id="27"></span></td>                        <td class="td2" ><span id="28"></span></td></tr>
+<tr align="center">
+  <td class="td2"><span style="font-size: 17px"id="29" ></span></td><td class="td2" ><span id="30" class="num"></span></td>
+  <td class="td2" ><span id="31"></span></td>                        <td class="td2" ><span id="32"></span></td></tr>
+<tr align="center">
+  <td class="td2"><span style="font-size: 17px"id="33" ></span></td><td class="td2" ><span id="34" class="num"></span></td>
+  <td class="td2" ><span id="35"></span></td>                        <td class="td2" ><span id="36"></span></td></tr>
+<tr align="center">
+  <td class="td2"><span style="font-size: 17px"id="37" ></span></td><td class="td2" ><span id="38" class="num"></span></td>
+  <td class="td2" ><span id="39"></span></td>                        <td class="td2" ><span id="40"></span></td></tr>
+
 </table>
+
 </div>
     <div class="link-top"></div>
 
@@ -262,15 +296,15 @@ body {
 		cellspacing="20"  align="center" border="1" width="400" height="200" cellpadding="0">
     <tr align="center" >
         <td class="td1">收货地址</td>
-        <td class="td2"><input type="text"></td>
+        <td class="td2" ><input type="text" id="address"></td>
     </tr>
     <tr align="center" >
         <td class="td1">收货人</td>
-        <td class="td2"><input type="text"></td>
+        <td class="td2" ><input type="text" id="consignee"></td>
     </tr>
     <tr align="center" >
         <td class="td1">收货人联系方式</td>
-        <td class="td2"><input type="text"></td>
+        <td class="td2" ><input type="text" id="contact"></td>
     </tr>
     <tr align="center" >
         <td class="td1">实付款:</td>
@@ -280,13 +314,36 @@ body {
 
 </div>
 
-</div>
-<center><h4><a href="http://127.0.0.1:5000/payment" class="button">确认付款</a></h4></center><br>
-<div class="background">
-    <div class="footer">
-    <h2>-广告位招租-</h2>
-    </div></div>
 
+</div>
+<center><h4><a href="/Payment" class="button">提交订单</a></h4></center>
+<script type="text/javascript">
+                  function hei() {
+                      var num=[];
+                        for(j=0;j<Object.keys($(".num")).length-2;i++){
+                        $(".num").each(function(){
+                        num[j]=$(this).text();
+                        j++;})}
+                      console.log(num);
+                      address = $("#address").val();
+                      consignee = $("#consignee").val();
+                      contact = $("#contact").val();
+                                  $.ajax({
+                                  url: "/ajax_check",
+                                  type: "post",
+                                  data: {"address":address,"consignee":consignee,"contact":contact,
+                                      "num0":num[0],"num1":num[1],"num2":num[2],"num3":num[3],"num4":num[4],
+                                      "num5":num[5],"num6":num[6],"num7":num[7],"num8":num[9],"num8":num[9]},
+                              success:function (datas) {console.log("成功了");console.log(datas)}, error:function () {console.log("失败了")
+                                      }})}
+
+
+
+</script>
+
+<div class="footer" >
+        BJFU 无限速团队&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;广告位招租&nbsp;&nbsp;&nbsp;
+</div>
 </body>
 
 

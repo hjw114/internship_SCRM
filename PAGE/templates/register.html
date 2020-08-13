@@ -7,13 +7,23 @@ function register(){
 	var t1=setTimeout(function(){x.innerHTML ="请面对镜头"},4000);
 	var t2=setTimeout(function(){x.innerHTML="请向左转头"},6000);
 	var t3=setTimeout(function(){x.innerHTML="请向右转头"},8000);
-	var t3=setTimeout(function(){x.innerHTML="识别成功！即将返回个人首页"},10000);
+
+}
+function login() {
+    var x=document.getElementById('txt');
+    var t4=setTimeout(function(){x.innerHTML="识别成功！即将返回个人首页"});
 	setTimeout(function(){window.location.href="http://127.0.0.1:5000/douser"},2000);
 }
+
 </script>
+
 <head>
     <title>登录/注册</title>
-    <meta charset="UTF-8">
+    <script src="../static/js/fileSaver.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <style>
 * {
     box-sizing: border-box;
@@ -26,18 +36,22 @@ body {
 /* 背景设置 */
 .background{
     margin:0px;
-    background: url(../static/5.jpg) no-repeat;
+    background: url(../static/webp.webp) no-repeat;
     background-size:100% 100%;
     background-attachment:fixed;
 }
-
-
+.background2{
+    margin:0px;
+    background: url(../static/background.jpg) no-repeat;
+    background-size:100% 100%;
+    background-attachment:fixed;
+}
 /* 标题 */
 .header {
-    padding-top: 30px;
+    padding-top: 130px;
     text-align: center;
     width: 100%;
-    color: #6699CC;
+    color: white;
 }
 
 /* 标题字体加大 */
@@ -47,7 +61,7 @@ body {
 
 /* 标题字体样式 */
 .slideShine{
-     background:#336699 -webkit-linear-gradient(left, #009999,#66CCCC 50%, #ffff00 90%,#CCFFFF) no-repeat 0 0;
+     background:white -webkit-linear-gradient(left, #009999,#66CCCC 50%, #ffff00 90%,#CCFFFF) no-repeat 0 0;
      background-size:20% 100%;
      -webkit-background-clip: text;
      -webkit-text-fill-color: transparent;
@@ -74,26 +88,23 @@ body {
 
 /* 导航，内容溢出元素框时隐藏 */
 .navbar {
-    font-weight: bolder;
-    background:#000;
+    margin-top: 130px;
+    font-family: 'Microsoft YaHei UI Light';
     overflow: hidden;
-    alpha(Opacity=4);
-    -moz-opacity:0.4;
-    opacity: 0.4;
 }
-
 /* 导航栏样式 */
 .navbar a {
-    font-size: 18px;
-    font-weight: bold;
+    font-weight: lighter;
+    font-size: 15px;
    cursor: pointer;
-    color: #fae063;
+    color: white;
   position: relative;
   padding: 0.5em 1em;
    z-index: 1;
   overflow: hidden;
     text-decoration: none; /* 文本装饰线 */
 }
+
 
 
 /* 导航栏效果 */
@@ -106,7 +117,7 @@ body {
   width: 1em;
   height: 1em;
   border-radius: 50%;
-  background-color: #fae063;
+  background-color: white;
   transform-origin: center;
   transform: translate3d(-40%, -40%, 0) scale(0, 0);
   transition: transform 0.45s ease-in-out;
@@ -126,11 +137,21 @@ body {
   transform: translate3d(-50%, -50%, 0) scale(15, 15);
 }
 
+/* 分割线 */
+.link-top {
+            width: 98%;
+            height: 1px;
+            border-top: solid #747373 1px;
+            margin-top: 20px;
+            margin-left: 1%;
+
+        }
+
 /* 主区域 */
 .main1 {
     padding: 5px;
     width: 50%;
-    height: 50%;
+    height: 70%;
     margin-bottom: 30px;
     margin-left: 25%;
     margin-top: 100px;
@@ -152,42 +173,74 @@ main1::before{
 
 
 
-.button{
-    float: left;
-    margin-left: 35%;
-    margin-bottom:30px;
-    background-color: #6699CC;
-    padding: 10px 25px;
-    border: none;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 8px;
-    font-size: 16px;
+button{
+    margin-top: 100px;
+    margin-bottom: 30px;
+    margin-left: 10%;
+  background: none;
+  border: 0;
+  box-sizing: border-box;
+  font-size: inherit;
+  font-weight: 700;
+  padding: 1em 2em;
+  text-align: center;
+  text-transform: capitalize;
+  position: relative;
+  vertical-align: middle;
 }
-.button:hover {
-    background-color: white;
-    color: #6699CC;
+button::before, button::after {
+  box-sizing: border-box;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
+
+.center:hover {
+  color: #6477b9;
+}
+.center::before, .center::after {
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  -webkit-transform-origin: center;
+      -ms-transform-origin: center;
+          transform-origin: center;
+}
+.center::before {
+  border-top: 2px solid #6477b9;
+  border-bottom: 2px solid #6477b9;
+  -webkit-transform: scale3d(0, 1, 1);
+          transform: scale3d(0, 1, 1);
+}
+.center::after {
+  border-left: 2px solid #6477b9;
+  border-right: 2px solid #6477b9;
+  -webkit-transform: scale3d(1, 0, 1);
+          transform: scale3d(1, 0, 1);
+}
+.center:hover::before, .center:hover::after {
+  -webkit-transform: scale3d(1, 1, 1);
+          transform: scale3d(1, 1, 1);
+  -webkit-transition: -webkit-transform 0.5s;
+          transition: transform 0.5s;
+}
+
 .video{
     float: left;
-    margin-left: 20%;
+    margin-left: 10%;
+    width:80%;
 }
-
-
 
     /* 底部 */
 .footer {
-    background:#000;
-    height:80px;
+    font-family: 'Microsoft YaHei UI Light';
+    font-size: 13px;
+    color: #6c6c6c;
     padding: 5px;
     text-align: center;
-    color: white;
-    alpha(Opacity=1);
-    -moz-opacity:0.1;
-    opacity: 0.1;
-    margin-top: 50px;
+    border-top: solid #adadad 1px;
 }
 
 /* 列容器 */
@@ -209,32 +262,228 @@ main1::before{
 </head>
 
 <body>
+
+
+<div class="row">
+    <img src="../static/logo.png"
+         style="height: 40px;width: 120px;vertical-align:middle;margin-left: 6%">
+    <div style="margin-left: 62%;margin-top:14px;font-family: 'Microsoft YaHei UI Light';font-size: 13px;color: #6d6d6d">
+        联系我们&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;加入我们&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;意见反馈</div>
+</div>
 <div class="background">
 <div class="header">
-  <div style="font-size: 40px" class="slideShine">极速生活 无限可能</div>
-  <img src="../static/logo.png" align="center" style="height: 100px;width: 100px">
+    <div class="link-top" style="width: 25%;margin-left: 37%;margin-bottom: 10px"></div>
+  <div style="font-size: 50px;font-family: 'Microsoft YaHei UI Light';
+  font-weight:lighter;letter-spacing: 20px" class="slideShine" >极速生活<br>无限可能</div>
+    <div class="link-top" style="width: 25%;margin-left: 37%;margin-bottom: 10px"></div>
 
 <div class="navbar">
-    <a href="http://127.0.0.1:5000/" style="float: left">返回首页</a></div>
+    <a href="/homepage.html" style="float: left">返回首页</a></div>
 </div>
+</div>
+    <p><input value={{ user_num }} type="hidden" id="hide"></p>
 
-<div class="row" >
+<div class="background2">
+<div class="row">
     <div class="main1">
     <div ><center><br>
     <h2 id="txt" ></h2>
     </center></div>
     <div align="center" class="video">
-         <video id="v" width=400px ></video>
+            <div id="videos-container" style="width:320px; height:240px;">
+            </div>
      </div>
-    <div align="center" >
-        <button onclick="register()" style="margin-top: 50px" class="button">立即登录/快速注册</button>
-    </div>
-</div>
-</div>
 
-<div class="footer">
-    <h2>-广告位招租-</h2>
-    </div>
+            <button class="center" id="openCamera" style="box-shadow: inset 0 0 0 2px #66CC99;color: #66CC99;">打开摄像头</button>
+            <button class="center" id="start-recording" disabled style="box-shadow: inset 0 0 0 2px #66CCCC;color:#66CCCC;">开始录制</button>
+            <button class="center" id="save-recording"  disabled style="box-shadow: inset 0 0 0 2px #009999;color: #009999;">开始识别</button>
+            <!--<a href="javascript:void(0)" onclick="send()">发送</a>-->
+
+
+        <script>
+            var mediaStream;
+            var recorderFile;
+            var stopRecordCallback;
+            var openBtn = document.getElementById("openCamera");
+            var startBtn = document.getElementById("start-recording");
+            var saveBtn = document.getElementById("save-recording");
+            openBtn.onclick = function() {
+                this.disabled = true;
+                startBtn.disabled=false;
+                openCamera();
+            };
+
+            startBtn.onclick = function() {
+                this.disabled = true;
+                startRecord();
+                var x=document.getElementById('txt');
+	            var t1=setTimeout(function(){x.innerHTML ="请面对镜头"},2000);
+	            var t2=setTimeout(function(){x.innerHTML="请向左转头"},5000);
+	            var t3=setTimeout(function(){x.innerHTML="请向右转头"},8000);
+	            var t3=setTimeout(function(){x.innerHTML=""},9000);
+            };
+
+            saveBtn.onclick = function() {
+                //send();
+                var x=document.getElementById('txt');
+                var t4=setTimeout(function(){x.innerHTML="正在识别！成功后自动返回个人首页"});
+	            setTimeout(function(){window.location.href="/douser"},2000);
+                // alert('Drop WebM file on Chrome or Firefox. Both can play entire file. VLC player or other players may not work.');
+            };
+
+            var mediaRecorder;
+            var videosContainer = document.getElementById('videos-container');
+
+            function openCamera(){
+                var len = videosContainer.childNodes.length;
+                for(var i=0;i<len;i++){
+                    videosContainer.removeChild(videosContainer.childNodes[i]);
+                }
+
+                var video = document.createElement('video');
+
+                var videoWidth = 320;
+                var videoHeight = 240;
+
+                video.controls = false;
+                video.muted = true;
+                video.width = videoWidth;
+                video.height = videoHeight;
+                MediaUtils.getUserMedia(true, false, function (err, stream) {
+                    if (err) {
+                        throw err;
+                    } else {
+                        // 通过 MediaRecorder 记录获取到的媒体流
+                        console.log();
+                        mediaRecorder = new MediaRecorder(stream);
+                        mediaStream = stream;
+                        var chunks = [], startTime = 0;
+                        video.srcObject = stream;
+                        video.play();
+
+                        videosContainer.appendChild(video);
+                        mediaRecorder.ondataavailable = function(e) {
+                            mediaRecorder.blobs.push(e.data);
+                            chunks.push(e.data);
+                        };
+                        mediaRecorder.blobs = [];
+
+                        mediaRecorder.onstop = function (e) {
+                            recorderFile = new Blob(chunks, { 'type' : mediaRecorder.mimeType });
+                            chunks = [];
+                            if (null != stopRecordCallback) {
+                                stopRecordCallback();
+                            }
+                        };
+                }
+            });
+            }
+
+            // 停止录制
+            function stopRecord(callback) {
+                stopRecordCallback = callback;
+                // 终止录制器
+                mediaRecorder.stop();
+                // 关闭媒体流
+                MediaUtils.closeStream(mediaStream);
+            }
+
+            var MediaUtils = {
+                /**
+                * 获取用户媒体设备(处理兼容的问题)
+                * @param videoEnable {boolean} - 是否启用摄像头
+                * @param audioEnable {boolean} - 是否启用麦克风
+                * @param callback {Function} - 处理回调
+                */
+                getUserMedia: function (videoEnable, audioEnable, callback) {
+                    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia
+                    || navigator.msGetUserMedia || window.getUserMedia;
+                    var constraints = {video: videoEnable, audio: audioEnable};
+                    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                        navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
+                        callback(false, stream);
+                    })['catch'](function(err) {
+                        callback(err);
+                    });
+                    } else if (navigator.getUserMedia) {
+                        navigator.getUserMedia(constraints, function (stream) {
+                        callback(false, stream);
+                    }, function (err) {
+                        callback(err);
+                    });
+                } else {
+                    callback(new Error('Not support userMedia'));
+                }
+            },
+
+                /**
+                * 关闭媒体流
+                * @param stream {MediaStream} - 需要关闭的流
+                */
+                closeStream: function (stream) {
+                    if (typeof stream.stop === 'function') {
+                        stream.stop();
+                    }
+                    else {
+                        let trackList = [stream.getAudioTracks(), stream.getVideoTracks()];
+
+                        for (let i = 0; i < trackList.length; i++) {
+                            let tracks = trackList[i];
+                            if (tracks && tracks.length > 0) {
+                                for (let j = 0; j < tracks.length; j++) {
+                                    let track = tracks[j];
+                                    if (typeof track.stop === 'function') {
+                                        track.stop();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+function startRecord() {
+    mediaRecorder.start();
+    setTimeout(function(){
+        // 结束
+        stopRecord(function() {
+            alert("录制成功!");
+            openBtn.disabled=false;
+            saveBtn.disabled=false;
+            //send();
+        });
+    }, 10000);
+}
+
+function saver(){
+    var file = new File([recorderFile], document.getElementById("hide").value + '.mp4', {
+        type: 'video/mp4'
+    });
+    saveAs(file);
+}
+
+function send(){
+    var file = new File([recorderFile], document.getElementById("hide").value + '.mp4', {
+        type: 'video/mp4'
+    });
+    var data = new FormData();
+    data.append("username", "test");
+    data.append("userfile", file);
+
+    var req = new XMLHttpRequest();
+    req.open("POST", "test2");
+    req.send(data);
+}
+
+</script>
+
 </div>
+</div>
+</div>
+<div class="footer" >
+        BJFU 无限速团队&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;广告位招租&nbsp;&nbsp;&nbsp;
+ </div>
+
 </body>
+
 </html>

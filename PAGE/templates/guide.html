@@ -1,14 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<script>
-    function sell() {
-        alert("请先登录")
-    }
-    </script>
-
 <head>
-<title>游客主页</title>
+<title>导购</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -111,8 +105,6 @@ input[type=text]:focus {
     width: 20%;
 }
 
-
-/* 导航栏效果 */
 /* 导航栏效果 */
 .navbar a::before {
   z-index: -1;
@@ -142,6 +134,7 @@ input[type=text]:focus {
 .navbar a:hover::before {
   transform: translate3d(-50%, -50%, 0) scale(15, 15);
 }
+
 
 
 ul,li{
@@ -324,10 +317,46 @@ to {
     background-color: white;
     padding: 5px;
     marin:10px;
-    width: 98%;
+    width: 48%;
     margin-left: 1%;
     margin-bottom: 10px;
 
+}
+
+ /* 主区域 */
+.main2 {
+    background: url("../static/background.jpg") no-repeat;
+    background-size:100% 100%;
+    background-attachment:fixed;
+    padding: 5px;
+    marin:10px;
+    width: 96%;
+    margin-left: 2%;
+    padding-bottom: 100px;
+}
+
+/* 主区域 */
+.main3 {
+    padding: 20px;
+    width: 60%;
+    margin-bottom: 10px;
+    margin-left: 20%;
+    margin-top: 200px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, .3);
+    box-shadow: 3px 3px 6px 3px rgba(0, 0, 0, .3);
+
+
+}
+
+main3::before{
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    filter: blur(20px);
+    z-index: -1;
+    margin: -30px;
 }
 
 /* 列容器 */
@@ -340,18 +369,95 @@ to {
 
 .fakeimg2 {
     border:1px solid #e3e1e1;
-    width: 19%;
-    height:300px;
+    width: 30%;
+    height:310px;
     padding: 5px;
     float: left;
     display:inline;
-    margin:3px;
+    margin:5px;
 }
 
 .goods a:hover img {
     filter:alpha(Opacity=70);
     -moz-opacity:0.7;
     opacity: 0.7;
+}
+
+button{
+    margin-top: 100px;
+    margin-bottom: 30px;
+  background: none;
+  border: 0;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 0 2px #66CC99;
+  color: #66CC99;
+  font-size: inherit;
+  font-weight: 700;
+  padding: 1em 2em;
+  text-align: center;
+  text-transform: capitalize;
+  position: relative;
+  vertical-align: middle;
+}
+button::before, button::after {
+  box-sizing: border-box;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.center:hover {
+  color: #6477b9;
+}
+.center::before, .center::after {
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  -webkit-transform-origin: center;
+      -ms-transform-origin: center;
+          transform-origin: center;
+}
+.center::before {
+  border-top: 2px solid #6477b9;
+  border-bottom: 2px solid #6477b9;
+  -webkit-transform: scale3d(0, 1, 1);
+          transform: scale3d(0, 1, 1);
+}
+.center::after {
+  border-left: 2px solid #6477b9;
+  border-right: 2px solid #6477b9;
+  -webkit-transform: scale3d(1, 0, 1);
+          transform: scale3d(1, 0, 1);
+}
+.center:hover::before, .center:hover::after {
+  -webkit-transform: scale3d(1, 1, 1);
+          transform: scale3d(1, 1, 1);
+  -webkit-transition: -webkit-transform 0.5s;
+          transition: transform 0.5s;
+}
+
+/* 表格第一列 */
+.td1 {
+    border-width: 2px;
+    border-style: solid;
+    border-color: white;
+    color: white;
+    background-color:rgb(81, 130, 187);
+}
+/* 表格其他列 */
+.td2{
+    border-width: 2px;
+    border-style: solid;
+    border-color: white;
+    color: #000;
+    background-color: rgb(202, 227, 253);
+}
+.tr1{
+    border:1px solid rgb(81, 130, 187);
+    background-color: white;
+    color:rgb(81, 130, 187);
 }
 
 .font{
@@ -405,16 +511,22 @@ to {
   font-weight:lighter;letter-spacing: 20px" class="slideShine" >极速生活<br>无限可能</div>
     <div class="link-top" style="width: 25%;margin-left: 37%;margin-bottom: 10px"></div>
 
+
  <div class="navbar" >
-  <a href="/register" class="right" style="float: right">登录/注册</a>
+
+     <form action="search" method="post">
+         <input type="text" name="search" placeholder="搜索商品">
+</form>
+
 </div>
 
 </div>
+
+
 </div>
 
-<div class="row" style="background-color: white">
-
-    <section class="slider-contaner">
+<div class="row" style="background-color: #f6f6f6">
+    <section class="slider-contaner" style="margin-top: 30px">
 <ul class="slider">
 <li class="slider-item slider-item1"></li>
 <li class="slider-item slider-item2"></li>
@@ -423,7 +535,7 @@ to {
 <li class="slider-item slider-item5"></li>
 </ul>
 <div class="focus-container">
-     <img src="../static/hot.png"
+    <img src="../static/hot.png"
      style="height: 60px;width: 100px;z-index:10;margin-left: 92%;margin-bottom: 22%">
 <ul class="floatfix">
 <li><div class="focus-item focus-item1"></div></li>
@@ -435,39 +547,113 @@ to {
 </div>
 </section>
 
-    <div class="link-top"></div>
-    <h2 class="title1" >-正在热卖-</h2>
-    <br>
+    <div class="link-top" style="margin-bottom: 30px"></div>
     <div class="main1">
-{% for goods in u[:10]%}
+   <h2 class="title1" >-正在热卖-</h2>
+
+        {% for goods in u[:6]%}
        <div class="fakeimg2" >
             <div align="center" class="goods" ><a href="#">
-                <img src="../static/{{ goods[0] }}.jpg" width=160px height=150px onclick="sell()"></a></div>
+                <img src="../static/{{ goods[0] }}.jpg" width=160px height=150px ></a></div>
             <div class="link-top" ></div>
            <div class="font">{{ goods[1] }}</div>
-                <center>销售价：￥{{ goods[2] }}</center>
+                <center style="margin-top:20px">销售价：￥{{ goods[2] }}</center>
         </div>
-{% endfor %}
-
+        {% endfor %}
     </div>
-    <div class="link-top"></div>
-<h2  class="title1">-当季爆款-</h2>
-    <div class="main1">
 
-{% for goods2 in u2[:10]%}
+
+    <div class="main1">
+<h2  class="title1">-当季爆款-</h2>
+        {% for goods2 in u2[:6]%}
       	<div class="fakeimg2" >
             <div align="center" class="goods"><a href="#">
-                <img src="../static/{{ goods2[0] }}.jpg" width=160px height=150px onclick="sell()"></a></div>
+                <img src="../static/{{ goods2[0] }}.jpg" width=160px height=150px ></a></div>
             <div class="link-top" ></div>
             <div class="font">{{ goods2[1] }}</div>
-                <center>销售价：￥{{ goods2[2] }}</center>
+            <center style="margin-top:20px">销售价：￥{{ goods2[2] }}</center>
         </div>
- {% endfor %}
+        {% endfor %}
+    </div>
+
+    <div class="link-top"></div>
+
+    <div class="main2" >
+        <div style="margin-top: 20px;margin-left: 45%">
+<form action="findID" method="post">
+<button class="center" >立即识别</button><br>
+    <input type="text" name='guestid' style="align:center">
+</form>
+</div>
+
+    {% if guestid %}
+        <div class="main3" >
+{% if u3%}
+<center><h2 style="color: #336699;
+  text-shadow: -1px -1px 0 #fff,1px 1px 0 #333,1px 1px 0 #444;">个人信息</h2></center>
+<table  style="font-size:20px;margin-top:10px; border-collapse:collapse; border-radius: 6px;"
+       width="400" height="200" align="center">
+<tr align="center">
+    <td class="td1">用户姓名</td>
+    <td class="td2">{{u3[0][0]}}</td>
+</tr>
+<tr align="center">
+    <td class="td1">手机号码</td>
+    <td class="td2">{{u3[0][1]}}</td>
+</tr>
+<tr align="center">
+    <td class="td1">住址</td>
+    <td class="td2">{{u3[0][2]}}</td>
+</tr>
+</table>
+        {% else %}
+        <p align="center">该顾客是新用户哦</p>
+{% endif %}
+<center><h2 style="color: #336699;
+  text-shadow: -1px -1px 0 #fff,1px 1px 0 #333,1px 1px 0 #444;">消费记录</h2></center>
+<table cellspacing="15"
+       style="font-size:12px;margin-top:10px;margin-bottom:100px;border-collapse:collapse;"
+       align="center" tr="border:1px" td="border:0px;" width="500">
+    <tr  class="tr1" style="font-weight: bold;" align="center">
+        <td>日期</td>
+        <td>商品</td>
+        <td>价格</td>
+    </tr>
+
+{% for goods in goods_information %}
+<tr class="tr1" align="center">
+    <td>{{ goods[10] }}</td>
+    <td style="width: 320px">{{ goods[2]}}</td>
+    <td>{{ goods[4] }}元</td>
+</tr>
+{% endfor %}
+
+{% endif %}
+
+</table>
+    </div>
+
+  {% if guestgoods %}
+    <div class="main1" style="width: 80%;margin-left: 14%;background: none">
+    <center><h2 style="color: #336699;
+  text-shadow: -1px -1px 0 #fff,1px 1px 0 #333,1px 1px 0 #444;">专属推荐</h2></center>
+     {% for goods in guestgoods[:8]%}
+       <div class="fakeimg2" style="width: 22%">
+            <div align="center" class="goods" ><a href="#">
+                <img src="../static/{{ goods[0] }}.jpg" width=160px height=150px ></a></div>
+            <div class="link-top" ></div>
+           <div class="font">{{ goods[1] }}</div>
+                <center style="margin-top:20px">销售价：￥{{ goods[2] }}</center>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
 
     </div>
 </div>
+
 <div class="footer" >
         BJFU 无限速团队&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;广告位招租&nbsp;&nbsp;&nbsp;
- </div>
+</div>
 </body>
 </html>
